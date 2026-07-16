@@ -1,5 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="@color/background" />
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Deep navy base -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/background" />
+        </shape>
+    </item>
+
+    <!-- Soft blue glow, top-left -->
+    <item
+        android:width="420dp"
+        android:height="420dp"
+        android:gravity="top|start"
+        android:left="-140dp"
+        android:top="-160dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="210dp"
+                android:startColor="@color/glow_blue"
+                android:centerColor="#263B82F6"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Soft purple glow, top-right -->
+    <item
+        android:width="360dp"
+        android:height="360dp"
+        android:gravity="top|end"
+        android:right="-120dp"
+        android:top="-120dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="180dp"
+                android:startColor="@color/glow_purple"
+                android:centerColor="#202D63F0"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Subtle glow near bottom for depth -->
+    <item
+        android:width="500dp"
+        android:height="300dp"
+        android:gravity="bottom|center_horizontal"
+        android:bottom="-180dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="250dp"
+                android:startColor="#1A3B82F6"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Pink / magenta bokeh accent, bottom-left -->
+    <item
+        android:width="220dp"
+        android:height="220dp"
+        android:gravity="bottom|start"
+        android:bottom="20dp"
+        android:left="-60dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="110dp"
+                android:startColor="@color/glow_pink"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Pink / magenta bokeh accent, mid-right -->
+    <item
+        android:width="160dp"
+        android:height="160dp"
+        android:gravity="center_vertical|end"
+        android:right="-30dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="80dp"
+                android:startColor="@color/glow_pink"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Scattered bright starburst light points (fiber-optic style) -->
+
+    <item
+        android:width="26dp"
+        android:height="26dp"
+        android:gravity="top|start"
+        android:left="70dp"
+        android:top="90dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="13dp"
+                android:startColor="@color/glow_dot_bright"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <item
+        android:width="18dp"
+        android:height="18dp"
+        android:gravity="top|end"
+        android:right="90dp"
+        android:top="60dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="9dp"
+                android:startColor="@color/glow_dot_bright"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <item
+        android:width="22dp"
+        android:height="22dp"
+        android:gravity="top|start"
+        android:left="200dp"
+        android:top="220dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="11dp"
+                android:startColor="@color/glow_dot"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <item
+        android:width="16dp"
+        android:height="16dp"
+        android:gravity="top|end"
+        android:right="50dp"
+        android:top="260dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="8dp"
+                android:startColor="@color/glow_dot"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <item
+        android:width="20dp"
+        android:height="20dp"
+        android:gravity="center_horizontal|top"
+        android:top="150dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="10dp"
+                android:startColor="@color/glow_dot_bright"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <item
+        android:width="14dp"
+        android:height="14dp"
+        android:gravity="bottom|start"
+        android:left="110dp"
+        android:bottom="260dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="7dp"
+                android:startColor="@color/glow_dot"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <item
+        android:width="18dp"
+        android:height="18dp"
+        android:gravity="bottom|end"
+        android:right="130dp"
+        android:bottom="180dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="9dp"
+                android:startColor="@color/glow_dot_bright"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <item
+        android:width="24dp"
+        android:height="24dp"
+        android:gravity="bottom|center_horizontal"
+        android:bottom="90dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="12dp"
+                android:startColor="@color/glow_dot"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+</layer-list>
