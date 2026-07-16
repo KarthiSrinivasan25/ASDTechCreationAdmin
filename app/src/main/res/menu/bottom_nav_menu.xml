@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard"/>
+
+    <item
+        android:id="@+id/nav_clients"
+        android:title="Clients"
+        android:icon="@drawable/ic_clients"/>
+
+    <item
+        android:id="@+id/nav_invoice"
+        android:title="Invoice"
+        android:icon="@drawable/ic_invoice"/>
+
+    <item
+        android:id="@+id/nav_payment"
+        android:title="Payments"
+        android:icon="@drawable/ic_payment"/>
+
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"/>
+
+</menu>

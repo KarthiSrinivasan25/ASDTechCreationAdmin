@@ -1,0 +1,234 @@
+package com.ecommerce.asdtechcreationadmin.ui.dashboard
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ecommerce.asdtechcreationadmin.R
+import com.ecommerce.asdtechcreationadmin.api.ApiClient
+import com.ecommerce.asdtechcreationadmin.api.ApiService
+import com.ecommerce.asdtechcreationadmin.data.model.DashboardResponse
+import com.ecommerce.asdtechcreationadmin.data.model.MonthlyRevenue
+import com.ecommerce.asdtechcreationadmin.databinding.ActivityDashboardBinding
+import com.ecommerce.asdtechcreationadmin.ui.adapter.PendingClientAdapter
+import com.ecommerce.asdtechcreationadmin.ui.adapter.RecentInvoiceAdapter
+import com.ecommerce.asdtechcreationadmin.ui.adapter.RecentPaymentAdapter
+import com.ecommerce.asdtechcreationadmin.ui.client.ClientActivity
+import com.ecommerce.asdtechcreationadmin.ui.invoice.InvoiceActivity
+import com.ecommerce.asdtechcreationadmin.ui.payment.PaymentActivity
+import com.ecommerce.asdtechcreationadmin.ui.settings.SettingsActivity
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class DashboardActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDashboardBinding
+    private lateinit var apiService: ApiService
+
+    private lateinit var invoiceAdapter: RecentInvoiceAdapter
+    private lateinit var paymentAdapter: RecentPaymentAdapter
+    private lateinit var pendingAdapter: PendingClientAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        apiService = ApiClient.apiService
+
+        setupRecyclerViews()
+        setupBottomNavigation()
+        loadDashboard()
+    }
+
+
+    private fun setupRecyclerViews() {
+
+        invoiceAdapter = RecentInvoiceAdapter(ArrayList())
+        paymentAdapter = RecentPaymentAdapter(ArrayList())
+        pendingAdapter = PendingClientAdapter(ArrayList())
+
+        binding.recentActivities.rvRecentInvoices.layoutManager =
+            LinearLayoutManager(this)
+        binding.recentActivities.rvRecentInvoices.adapter =
+            invoiceAdapter
+
+        binding.recentActivities.rvRecentPayments.layoutManager =
+            LinearLayoutManager(this)
+        binding.recentActivities.rvRecentPayments.adapter =
+            paymentAdapter
+
+        binding.recentActivities.rvPendingClients.layoutManager =
+            LinearLayoutManager(this)
+        binding.recentActivities.rvPendingClients.adapter =
+            pendingAdapter
+    }
+
+    private fun setupBottomNavigation() {
+
+        binding.bottomNavigation.itemIconTintList = null
+        binding.bottomNavigation.itemTextColor = null
+
+        binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+
+            when (item.itemId) {
+
+                R.id.nav_dashboard -> {
+                    true
+                }
+
+                R.id.nav_clients -> {
+                    startActivity(Intent(this, ClientActivity::class.java))
+                    true
+                }
+
+                R.id.nav_invoice -> {
+                    startActivity(Intent(this, InvoiceActivity::class.java))
+                    true
+                }
+
+                R.id.nav_payment -> {
+                    startActivity(Intent(this, PaymentActivity::class.java))
+                    true
+                }
+
+                R.id.nav_settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    private fun loadDashboard() {
+
+        apiService.getDashboard().enqueue(object : Callback<DashboardResponse> {
+
+            override fun onResponse(
+                call: Call<DashboardResponse>,
+                response: Response<DashboardResponse>
+            ) {
+
+                if (response.isSuccessful &&
+                    response.body() != null &&
+                    response.body()!!.status
+                ) {
+
+                    val dashboard = response.body()!!
+
+                    // Dashboard Cards
+
+                    binding.dashboardCards.txtTotalClients.text =
+                        dashboard.dashboard.total_clients.toString()
+
+                    binding.dashboardCards.txtTotalInvoices.text =
+                        dashboard.dashboard.total_invoices.toString()
+
+                    binding.dashboardCards.txtPendingPayments.text =
+                        "₹${dashboard.dashboard.pending_amount}"
+
+                    binding.dashboardCards.txtPaidPayments.text =
+                        "₹${dashboard.dashboard.paid_amount}"
+
+                    binding.revenueChart.txtRevenue.text =
+                        "₹${dashboard.dashboard.invoice_amount}"
+
+                    // RecyclerViews
+
+                    invoiceAdapter.updateData(
+                        dashboard.recent_invoices
+                    )
+
+                    paymentAdapter.updateData(
+                        dashboard.recent_payments
+                    )
+
+                    pendingAdapter.updateData(
+                        dashboard.pending_clients
+                    )
+
+                    // Revenue Chart
+
+                    loadRevenueChart(
+                        dashboard.charts.monthly_revenue
+                    )
+
+                } else {
+
+                    Toast.makeText(
+                        this@DashboardActivity,
+                        "Failed to load dashboard",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onFailure(
+                call: Call<DashboardResponse>,
+                t: Throwable
+            ) {
+
+                Toast.makeText(
+                    this@DashboardActivity,
+                    t.localizedMessage ?: "Something went wrong",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
+    }
+
+    private fun loadRevenueChart(
+        revenueList: List<MonthlyRevenue>
+    ) {
+
+        val entries = ArrayList<BarEntry>()
+        val labels = ArrayList<String>()
+
+        for (i in revenueList.indices) {
+
+            entries.add(
+                BarEntry(
+                    i.toFloat(),
+                    revenueList[i].amount.toFloat()
+                )
+            )
+
+            labels.add(revenueList[i].month)
+        }
+
+        val dataSet = BarDataSet(entries, "Revenue")
+
+        dataSet.valueTextSize = 10f
+
+        val data = BarData(dataSet)
+
+        binding.revenueChart.barChart.data = data
+
+        binding.revenueChart.barChart.description.isEnabled = false
+        binding.revenueChart.barChart.axisRight.isEnabled = false
+        binding.revenueChart.barChart.animateY(1000)
+
+        binding.revenueChart.barChart.xAxis.position =
+            XAxis.XAxisPosition.BOTTOM
+
+        binding.revenueChart.barChart.xAxis.granularity = 1f
+        binding.revenueChart.barChart.xAxis.valueFormatter =
+            IndexAxisValueFormatter(labels)
+
+        binding.revenueChart.barChart.invalidate()
+    }
+
+
+}
