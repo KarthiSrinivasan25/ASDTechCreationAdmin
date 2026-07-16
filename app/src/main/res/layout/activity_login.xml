@@ -15,64 +15,33 @@
 
         <!-- Hero -->
 
-       <!-- Hero -->
+       
 
-<!-- Hero -->
-
-<LinearLayout
+<FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_header_gradient"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingTop="20dp"
-    android:paddingBottom="50dp">
+    android:layout_height="320dp">
 
 
-    <!-- Banner Image -->
+    <!-- Full Header Image -->
 
-    <com.google.android.material.card.MaterialCardView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="28dp"
-        app:cardElevation="0dp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_banner" />
 
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/login_banner" />
+    <!-- Image Dark Overlay -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#40000000" />
 
 
-    </com.google.android.material.card.MaterialCardView>
 
 
-    <!-- Existing Logo -->
-
-    
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="ASD TechCreation"
-        android:textColor="@color/text_on_gradient"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Admin Panel"
-        android:textColor="@color/text_on_gradient_muted"
-        android:textSize="13sp" />
-
-
-</LinearLayout>
+</FrameLayout>
         <!-- Form Card -->
 
         <com.google.android.material.card.MaterialCardView
