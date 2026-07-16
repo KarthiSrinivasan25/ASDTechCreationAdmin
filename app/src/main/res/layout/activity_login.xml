@@ -16,8 +16,8 @@
         <!-- Hero -->
 
 <androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_width="380dp"
+    android:layout_height="250dp"
 
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp">
@@ -30,13 +30,11 @@
 
 
         <ImageView
-    android:layout_width="360dp"
-    android:layout_height="320dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-    android:layout_gravity="center"
-
-    android:scaleType="centerCrop"
-    android:src="@drawable/login_banner" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/login_banner" />
 
 
         <View
