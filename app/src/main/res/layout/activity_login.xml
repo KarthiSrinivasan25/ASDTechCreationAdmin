@@ -87,7 +87,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_email"
-                        app:tint="@color/text_secondary" />
+                        app:tint="@null" />
 
                     <EditText
                         android:id="@+id/etEmail"
@@ -120,7 +120,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_lock"
-                        app:tint="@color/text_secondary" />
+                        app:tint="@null" />
 
                     <EditText
                         android:id="@+id/etPassword"
