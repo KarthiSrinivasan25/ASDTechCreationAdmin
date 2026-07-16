@@ -37,4 +37,7 @@
     <!-- Glow accents for dark background -->
     <color name="glow_blue">#4D3B82F6</color>
     <color name="glow_purple">#402D63F0</color>
+    <color name="glow_pink">#FF4081</color>
+<color name="glow_dot_bright">#FFFFFF</color>
+<color name="glow_dot">#80FFFFFF</color>
 </resources>
