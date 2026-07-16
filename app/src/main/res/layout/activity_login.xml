@@ -177,21 +177,35 @@
 
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnLogin"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="26dp"
-                    android:background="@drawable/bg_button_gradient"
-                    android:backgroundTint="@null"
-                    android:elevation="0dp"
-                    android:text="Login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="16dp"
-                    app:rippleColor="#33FFFFFF" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bg_button_gradient"
+                        android:backgroundTint="@null"
+                        android:elevation="0dp"
+                        android:text="Login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="16dp"
+                        app:rippleColor="#33FFFFFF" />
+
+                    <ProgressBar
+                        android:id="@+id/progressLogin"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="gone" />
+
+                </FrameLayout>
 
             </LinearLayout>
 

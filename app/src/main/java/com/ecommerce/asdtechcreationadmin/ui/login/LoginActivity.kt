@@ -3,8 +3,11 @@ package com.ecommerce.asdtechcreationadmin.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.widget.Toast
+import android.view.Gravity
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.ecommerce.asdtechcreationadmin.R
 import com.ecommerce.asdtechcreationadmin.api.ApiClient
 import com.ecommerce.asdtechcreationadmin.data.model.LoginRequest
@@ -12,6 +15,7 @@ import com.ecommerce.asdtechcreationadmin.data.model.LoginResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityLoginBinding
 import com.ecommerce.asdtechcreationadmin.session.SessionManager
 import com.ecommerce.asdtechcreationadmin.ui.dashboard.DashboardActivity
+import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -74,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        binding.btnLogin.isEnabled = false
+        setLoading(true)
 
         ApiClient.apiService.login(
             LoginRequest(email, password)
@@ -85,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
                 response: Response<LoginResponse>
             ) {
 
-                binding.btnLogin.isEnabled = true
+                setLoading(false)
 
                 if (response.isSuccessful) {
 
@@ -99,36 +103,37 @@ class LoginActivity : AppCompatActivity() {
                             body.admin.email
                         )
 
-                        Toast.makeText(
-                            this@LoginActivity,
-                            body.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        startActivity(
-                            Intent(
-                                this@LoginActivity,
-                                DashboardActivity::class.java
-                            )
+                        showNotification(
+                            body.message ?: "Login successful",
+                            isSuccess = true
                         )
 
-                        finish()
+                        binding.root.postDelayed({
+
+                            startActivity(
+                                Intent(
+                                    this@LoginActivity,
+                                    DashboardActivity::class.java
+                                )
+                            )
+
+                            finish()
+
+                        }, 600)
 
                     } else {
 
-                        Toast.makeText(
-                            this@LoginActivity,
+                        showNotification(
                             body?.message ?: "Login Failed",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            isSuccess = false
+                        )
                     }
                 } else {
 
-                    Toast.makeText(
-                        this@LoginActivity,
+                    showNotification(
                         "Invalid Email or Password",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        isSuccess = false
+                    )
                 }
             }
 
@@ -137,14 +142,44 @@ class LoginActivity : AppCompatActivity() {
                 t: Throwable
             ) {
 
-                binding.btnLogin.isEnabled = true
+                setLoading(false)
 
-                Toast.makeText(
-                    this@LoginActivity,
-                    t.message ?: "Something went wrong",
-                    Toast.LENGTH_LONG
-                ).show()
+                showNotification(
+                    t.message ?: "Something went wrong. Please try again",
+                    isSuccess = false
+                )
             }
         })
+    }
+
+    private fun setLoading(loading: Boolean) {
+
+        binding.btnLogin.isEnabled = !loading
+        binding.etEmail.isEnabled = !loading
+        binding.etPassword.isEnabled = !loading
+        binding.imgEye.isEnabled = !loading
+
+        binding.btnLogin.text = if (loading) "" else "Login"
+        binding.progressLogin.visibility = if (loading) View.VISIBLE else View.GONE
+    }
+
+    private fun showNotification(message: String, isSuccess: Boolean) {
+
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        val snackbarView = snackbar.view
+
+        val colorRes = if (isSuccess) R.color.accent_green else R.color.accent_red
+
+        snackbarView.setBackgroundColor(
+            ContextCompat.getColor(this, colorRes)
+        )
+
+        val textView = snackbarView.findViewById<TextView>(
+            com.google.android.material.R.id.snackbar_text
+        )
+        textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+        textView.gravity = Gravity.CENTER
+
+        snackbar.show()
     }
 }
