@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Deep navy base -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/background" />
+        </shape>
+    </item>
+
+    <!-- Soft blue glow, top-left -->
+    <item
+        android:width="420dp"
+        android:height="420dp"
+        android:gravity="top|start"
+        android:left="-140dp"
+        android:top="-160dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="210dp"
+                android:startColor="@color/glow_blue"
+                android:centerColor="#263B82F6"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Soft purple glow, top-right -->
+    <item
+        android:width="360dp"
+        android:height="360dp"
+        android:gravity="top|end"
+        android:right="-120dp"
+        android:top="-120dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="180dp"
+                android:startColor="@color/glow_purple"
+                android:centerColor="#202D63F0"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Subtle glow near bottom for depth -->
+    <item
+        android:width="500dp"
+        android:height="300dp"
+        android:gravity="bottom|center_horizontal"
+        android:bottom="-180dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="250dp"
+                android:startColor="#1A3B82F6"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+</layer-list>

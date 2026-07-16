@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="primary">#2563EB</color>
-    <color name="background">#0D1220</color>
-    <color name="card">#161B2E</color>
+    <color name="primary">#3B82F6</color>
+    <color name="background">#050B1D</color>
+    <color name="card">#111A34</color>
     <color name="text">#FFFFFF</color>
 
-    <color name="gradient_start">#312E81</color>
-    <color name="gradient_end">#1E3A8A</color>
+    <color name="gradient_start">#1E293B</color>
+    <color name="gradient_end">#1D4ED8</color>
 
-    <color name="surface">#161B2E</color>
-    <color name="surface_alt">#0D1220</color>
-    <color name="stroke">#242B45</color>
-    <color name="divider">#242B45</color>
+    <color name="surface">#111A34</color>
+    <color name="surface_alt">#0C1428</color>
+    <color name="stroke">#1E2A4E</color>
+    <color name="divider">#1E2A4E</color>
 
     <color name="text_primary">#F3F4F6</color>
-    <color name="text_secondary">#9CA3AF</color>
-    <color name="text_muted">#6B7280</color>
+    <color name="text_secondary">#9CA8C7</color>
+    <color name="text_muted">#6B7794</color>
     <color name="text_on_gradient">#FFFFFF</color>
     <color name="text_on_gradient_muted">#C7D2FE</color>
 
     <color name="accent_blue">#60A5FA</color>
-    <color name="accent_blue_bg">#1E3A5F</color>
+    <color name="accent_blue_bg">#152A54</color>
     <color name="accent_orange">#FBBF24</color>
-    <color name="accent_orange_bg">#4A3B14</color>
+    <color name="accent_orange_bg">#3D2E0E</color>
     <color name="accent_purple">#A78BFA</color>
-    <color name="accent_purple_bg">#3B2E5F</color>
+    <color name="accent_purple_bg">#2C1F54</color>
     <color name="accent_green">#34D399</color>
-    <color name="accent_green_bg">#124A38</color>
+    <color name="accent_green_bg">#0D3B2E</color>
     <color name="accent_red">#F87171</color>
-    <color name="accent_red_bg">#4A1F1F</color>
+    <color name="accent_red_bg">#3D1717</color>
 
     <color name="nav_selected">#60A5FA</color>
-    <color name="nav_unselected">#6B7280</color>
+    <color name="nav_unselected">#6B7794</color>
+
+    <!-- Glow accents for dark background -->
+    <color name="glow_blue">#4D3B82F6</color>
+    <color name="glow_purple">#402D63F0</color>
 </resources>
