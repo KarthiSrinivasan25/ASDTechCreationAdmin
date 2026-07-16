@@ -15,33 +15,52 @@
 
         <!-- Hero -->
 
+       <!-- Hero -->
+
+<!-- Hero -->
+
+<!-- Hero Header -->
+
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+
+    app:cardCornerRadius="0dp"
+    app:cardElevation="0dp"
+    app:cardPreventCornerOverlap="false">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!-- Full Width Banner -->
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scaleType="centerCrop"
+            android:src="@drawable/login_banner" />
+
+
+        <!-- Dark Overlay -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#40000000" />
+
+
+        <!-- Bottom Content -->
+
        
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="320dp">
+    </FrameLayout>
 
 
-    <!-- Full Header Image -->
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/login_banner" />
-
-
-    <!-- Image Dark Overlay -->
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#40000000" />
-
-
-
-
-</FrameLayout>
+</com.google.android.material.card.MaterialCardView>
         <!-- Form Card -->
 
         <com.google.android.material.card.MaterialCardView
