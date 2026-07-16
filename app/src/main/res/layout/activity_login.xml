@@ -15,40 +15,28 @@
 
         <!-- Hero -->
 
-<androidx.cardview.widget.CardView
-    android:layout_width="380dp"
-    android:layout_height="250dp"
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
 
-    app:cardCornerRadius="0dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+
+    app:cardCornerRadius="30dp"
     app:cardElevation="0dp">
 
-    <FrameLayout
-        android:layout_width="380dp"
-    android:layout_height="250dp"
-        android:background="@drawable/bg_banner_rounded"
-        android:clipToOutline="true">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+
+        android:src="@drawable/login_banner"/>
 
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:scaleType="centerCrop"
-            android:src="@drawable/login_banner" />
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#40000000" />
-
-
-        <!-- Your Text / Logo Here -->
-
-
-    </FrameLayout>
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
         <!-- Form Card -->
 
         <com.google.android.material.card.MaterialCardView
