@@ -15,27 +15,19 @@
 
         <!-- Hero -->
 
-       <!-- Hero -->
-
-<!-- Hero -->
-
-<!-- Hero Header -->
-
-<com.google.android.material.card.MaterialCardView
+<androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="320dp"
 
     app:cardCornerRadius="0dp"
-    app:cardElevation="0dp"
-    app:cardPreventCornerOverlap="false">
-
+    app:cardElevation="0dp">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_banner_rounded"
+        android:clipToOutline="true">
 
-
-        <!-- Full Width Banner -->
 
         <ImageView
             android:layout_width="match_parent"
@@ -45,22 +37,18 @@
             android:src="@drawable/login_banner" />
 
 
-        <!-- Dark Overlay -->
-
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#40000000" />
 
 
-        <!-- Bottom Content -->
+        <!-- Your Text / Logo Here -->
 
-       
 
     </FrameLayout>
 
-
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>
         <!-- Form Card -->
 
         <com.google.android.material.card.MaterialCardView
@@ -112,7 +100,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_email"
-                        app:tint="@color/text_secondary" />
+                        app:tint="@null" />
 
                     <EditText
                         android:id="@+id/etEmail"
@@ -145,7 +133,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_lock"
-                        app:tint="@color/text_secondary" />
+                        app:tint="@null" />
 
                     <EditText
                         android:id="@+id/etPassword"
