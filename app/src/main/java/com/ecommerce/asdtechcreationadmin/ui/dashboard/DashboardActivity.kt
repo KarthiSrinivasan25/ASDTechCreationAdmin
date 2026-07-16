@@ -98,6 +98,10 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
 
+        
+        binding.bottomNavigation.itemIconTintList = null
+        binding.bottomNavigation.itemTextColor = null
+
         binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
