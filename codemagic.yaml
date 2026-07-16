@@ -2,7 +2,6 @@ workflows:
   android-debug-workflow:
     name: ASD TechCreation Admin - Debug Build
     max_build_duration: 60
-    instance_type: linux
 
     environment:
       java: 17
@@ -10,21 +9,10 @@ workflows:
         PACKAGE_NAME: "com.ecommerce.asdtechcreationadmin"
 
     scripts:
-      - name: Set execute permission for gradlew
+      - name: Build Debug APK
         script: |
           chmod +x ./gradlew
-
-      - name: Build debug APK
-        script: |
           ./gradlew assembleDebug
 
     artifacts:
       - app/build/outputs/**/*.apk
-
-    publishing:
-      email:
-        recipients:
-          - karthikeyan25082000@gmail.com
-        notify:
-          success: true
-          failure: true
