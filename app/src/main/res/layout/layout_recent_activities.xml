@@ -6,16 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
-    app:strokeColor="#E5E7EB"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/stroke"
     app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="18dp">
 
         <!-- Header -->
 
@@ -24,11 +25,19 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_history"
-                app:tint="#2563EB" />
+            <FrameLayout
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_icon_circle_blue">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_history"
+                    app:tint="@color/accent_blue" />
+
+            </FrameLayout>
 
             <TextView
                 android:layout_width="0dp"
@@ -36,26 +45,27 @@
                 android:layout_weight="1"
                 android:layout_marginStart="10dp"
                 android:text="Recent Activities"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtViewAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="View All"
-                android:textColor="#2563EB"
-                android:textStyle="bold"
-                android:textSize="13sp"/>
+                android:textColor="@color/accent_blue"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:background="#EEEEEE"/>
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="@color/divider" />
 
         <!-- Recent Invoice -->
 
@@ -63,52 +73,55 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recent Invoices"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecentInvoices"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:nestedScrollingEnabled="false"
-            android:overScrollMode="never"
-            android:layout_marginTop="8dp"/>
+            android:overScrollMode="never" />
 
         <!-- Recent Payment -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:text="Recent Payments"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecentPayments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:nestedScrollingEnabled="false"
-            android:overScrollMode="never"
-            android:layout_marginTop="8dp"/>
+            android:overScrollMode="never" />
 
         <!-- Pending Clients -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="18dp"
             android:text="Pending Clients"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPendingClients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:nestedScrollingEnabled="false"
-            android:overScrollMode="never"
-            android:layout_marginTop="8dp"/>
+            android:overScrollMode="never" />
 
     </LinearLayout>
 

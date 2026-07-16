@@ -1,6 +1,7 @@
 package com.ecommerce.asdtechcreationadmin.ui.dashboard
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.ecommerce.asdtechcreationadmin.api.ApiService
 import com.ecommerce.asdtechcreationadmin.data.model.DashboardResponse
 import com.ecommerce.asdtechcreationadmin.data.model.MonthlyRevenue
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityDashboardBinding
+import com.ecommerce.asdtechcreationadmin.session.SessionManager
 import com.ecommerce.asdtechcreationadmin.ui.adapter.PendingClientAdapter
 import com.ecommerce.asdtechcreationadmin.ui.adapter.RecentInvoiceAdapter
 import com.ecommerce.asdtechcreationadmin.ui.adapter.RecentPaymentAdapter
@@ -26,11 +28,13 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Calendar
 
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var apiService: ApiService
+    private lateinit var sessionManager: SessionManager
 
     private lateinit var invoiceAdapter: RecentInvoiceAdapter
     private lateinit var paymentAdapter: RecentPaymentAdapter
@@ -43,10 +47,30 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         apiService = ApiClient.apiService
+        sessionManager = SessionManager(this)
 
+        setupHeader()
         setupRecyclerViews()
         setupBottomNavigation()
         loadDashboard()
+    }
+
+    private fun setupHeader() {
+
+        val name = sessionManager.getName()
+        val displayName = if (name.isNotBlank()) name else "Admin"
+
+        binding.dashboardHeader.txtWelcome.text = "Welcome, $displayName"
+        binding.dashboardHeader.txtAvatarInitial.text =
+            displayName.trim().take(1).uppercase()
+
+        val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+
+        binding.dashboardHeader.txtGreetingTime.text = when {
+            hour < 12 -> "Good Morning \uD83D\uDC4B"
+            hour < 17 -> "Good Afternoon \uD83D\uDC4B"
+            else -> "Good Evening \uD83D\uDC4B"
+        }
     }
 
 
@@ -73,9 +97,6 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
-
-        binding.bottomNavigation.itemIconTintList = null
-        binding.bottomNavigation.itemTextColor = null
 
         binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
 
@@ -211,23 +232,39 @@ class DashboardActivity : AppCompatActivity() {
         val dataSet = BarDataSet(entries, "Revenue")
 
         dataSet.valueTextSize = 10f
+        dataSet.color = Color.parseColor("#2563EB")
+        dataSet.valueTextColor = Color.parseColor("#111827")
+        dataSet.setDrawValues(true)
 
         val data = BarData(dataSet)
+        data.barWidth = 0.55f
 
-        binding.revenueChart.barChart.data = data
+        val chart = binding.revenueChart.barChart
 
-        binding.revenueChart.barChart.description.isEnabled = false
-        binding.revenueChart.barChart.axisRight.isEnabled = false
-        binding.revenueChart.barChart.animateY(1000)
+        chart.data = data
 
-        binding.revenueChart.barChart.xAxis.position =
-            XAxis.XAxisPosition.BOTTOM
+        chart.description.isEnabled = false
+        chart.legend.isEnabled = false
+        chart.setDrawGridBackground(false)
+        chart.setFitBars(true)
+        chart.setExtraOffsets(0f, 4f, 0f, 4f)
+        chart.animateY(1000)
 
-        binding.revenueChart.barChart.xAxis.granularity = 1f
-        binding.revenueChart.barChart.xAxis.valueFormatter =
-            IndexAxisValueFormatter(labels)
+        chart.axisRight.isEnabled = false
 
-        binding.revenueChart.barChart.invalidate()
+        chart.axisLeft.setDrawGridLines(true)
+        chart.axisLeft.gridColor = Color.parseColor("#EEF0F5")
+        chart.axisLeft.axisLineColor = Color.parseColor("#EEF0F5")
+        chart.axisLeft.textColor = Color.parseColor("#6B7280")
+
+        chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        chart.xAxis.setDrawGridLines(false)
+        chart.xAxis.axisLineColor = Color.parseColor("#EEF0F5")
+        chart.xAxis.textColor = Color.parseColor("#6B7280")
+        chart.xAxis.granularity = 1f
+        chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
+        chart.invalidate()
     }
 
 

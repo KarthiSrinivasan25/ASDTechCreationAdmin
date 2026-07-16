@@ -5,17 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
-    app:strokeColor="#E5E7EB"
+    android:layout_marginTop="4dp"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/stroke"
     app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="18dp">
 
         <!-- Header -->
 
@@ -24,19 +25,42 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_chart"
-                app:tint="@color/purple_500" />
+            <FrameLayout
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_icon_circle_purple">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_chart"
+                    app:tint="@color/accent_purple" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:text="Monthly Revenue"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Monthly Revenue"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:background="@drawable/bg_period_chip"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                android:text="This Year"
+                android:textColor="@color/accent_blue"
+                android:textSize="11sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -46,18 +70,19 @@
             android:id="@+id/txtRevenue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:text="₹0"
-            android:textStyle="bold"
-            android:textSize="28sp"
-            android:textColor="#2563EB"/>
+            android:textColor="@color/text_primary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="Total Invoice Revenue"
-            android:textColor="#757575"
-            android:textSize="13sp"/>
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
 
         <!-- Divider -->
 
@@ -65,15 +90,15 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="#EEEEEE"/>
+            android:layout_marginBottom="12dp"
+            android:background="@color/divider" />
 
         <!-- Chart -->
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
             android:layout_width="match_parent"
-            android:layout_height="250dp"/>
+            android:layout_height="250dp" />
 
     </LinearLayout>
 
