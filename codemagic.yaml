@@ -3,59 +3,24 @@ workflows:
     name: ASD TechCreation Admin - Debug Build
     max_build_duration: 60
     instance_type: linux_x2
-    environment:
-      groups:
-        - keystore_credentials   # only needed for the release workflow below
-      vars:
-        PACKAGE_NAME: "com.ecommerce.asdtechcreationadmin"
-      android_signing:
-        - asd_keystore           # only used if you attach a keystore in Codemagic (release build)
-      java: 17
-    triggering:
-      events:
-        - push
-      branch_patterns:
-        - pattern: main
-          include: true
-    scripts:
-      - name: Set execute permission for gradlew
-        script: chmod +x ./gradlew
-      - name: Build debug APK
-        script: ./gradlew assembleDebug
-    artifacts:
-      - app/build/outputs/**/*.apk
-      - app/build/outputs/**/mapping.txt
-    publishing:
-      email:
-        recipients:
-          - karthikeyan25082000@gmail.com
-        notify:
-          success: true
-          failure: true
 
-  android-release-workflow:
-    name: ASD TechCreation Admin - Release Build (Signed)
-    max_build_duration: 60
-    instance_type: linux_x2
     environment:
-      groups:
-        - keystore_credentials
+      java: 17
       vars:
         PACKAGE_NAME: "com.ecommerce.asdtechcreationadmin"
-      android_signing:
-        - asd_keystore
-      java: 17
+
     scripts:
       - name: Set execute permission for gradlew
-        script: chmod +x ./gradlew
-      - name: Build release APK
-        script: ./gradlew assembleRelease
-      - name: Build release AAB (for Play Store)
-        script: ./gradlew bundleRelease
+        script: |
+          chmod +x ./gradlew
+
+      - name: Build debug APK
+        script: |
+          ./gradlew assembleDebug
+
     artifacts:
-      - app/build/outputs/**/*.aab
       - app/build/outputs/**/*.apk
-      - app/build/outputs/**/mapping.txt
+
     publishing:
       email:
         recipients:
