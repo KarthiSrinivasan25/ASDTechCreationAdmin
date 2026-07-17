@@ -29,10 +29,6 @@
             android:paddingBottom="24dp">
 
             <include
-                android:id="@+id/dashboardBanner"
-                layout="@layout/layout_dashboard_banner" />
-
-            <include
                 android:id="@+id/dashboardCards"
                 layout="@layout/layout_dashboard_cards" />
 
