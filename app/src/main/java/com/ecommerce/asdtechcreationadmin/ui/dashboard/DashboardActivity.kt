@@ -25,6 +25,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.Calendar
+import android.os.Handler
+import android.os.Looper
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -54,37 +56,49 @@ class DashboardActivity : AppCompatActivity() {
         loadDashboard()
     }
 
-   private fun setupHeader() {
+
+    private val timeHandler = Handler(Looper.getMainLooper())
+
+private val timeRunnable = object : Runnable {
+    override fun run() {
+
+        val dateFormat = SimpleDateFormat(
+            "EEE, dd MMM\nhh:mm:ss a",
+            Locale.getDefault()
+        )
+
+        binding.dashboardHeader.txtDateTime.text =
+            dateFormat.format(Date())
+
+        timeHandler.postDelayed(this, 1000)
+    }
+}
+
+private fun setupHeader() {
 
     val name = sessionManager.getName()
     val displayName = if (name.isNotBlank()) name else "Admin"
 
-    binding.dashboardHeader.txtWelcome.text = "Welcome, $displayName"
+    binding.dashboardHeader.txtWelcome.text =
+        "Welcome, $displayName"
 
     binding.dashboardHeader.txtAvatarInitial.text =
         displayName.trim().take(1).uppercase()
 
 
-    val calendar = Calendar.getInstance()
+    val hour = Calendar.getInstance()
+        .get(Calendar.HOUR_OF_DAY)
 
-    val hour = calendar.get(Calendar.HOUR_OF_DAY)
+    binding.dashboardHeader.txtGreetingTime.text =
+        when {
+            hour < 12 -> "Good Morning 👋"
+            hour < 17 -> "Good Afternoon 👋"
+            else -> "Good Evening 👋"
+        }
 
-    binding.dashboardHeader.txtGreetingTime.text = when {
-        hour < 12 -> "Good Morning 👋"
-        hour < 17 -> "Good Afternoon 👋"
-        else -> "Good Evening 👋"
-    }
 
-
-    // Date & Time
-
-    val dateFormat = SimpleDateFormat(
-    "EEE, dd MMM\nhh:mm a",
-    Locale.getDefault()
-)
-
-    binding.dashboardHeader.txtDateTime.text =
-        dateFormat.format(Date())
+    // Start live clock
+    timeHandler.post(timeRunnable)
 }
 
 
@@ -251,5 +265,8 @@ class DashboardActivity : AppCompatActivity() {
         chart.invalidate()
     }
 
-
+override fun onDestroy() {
+    super.onDestroy()
+    timeHandler.removeCallbacks(timeRunnable)
+}
 }
