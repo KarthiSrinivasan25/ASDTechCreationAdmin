@@ -39,7 +39,7 @@
                     android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_clients"
-                    app:tint="@color/accent_blue" />
+                    app:tint="@null" />
 
             </FrameLayout>
 
@@ -96,7 +96,7 @@
                     android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_invoice"
-                    app:tint="@color/accent_orange" />
+                    app:tint="@null" />
 
             </FrameLayout>
 
@@ -154,7 +154,7 @@
                     android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_pending"
-                    app:tint="@color/accent_red" />
+                    app:tint="@null" />
 
             </FrameLayout>
 
@@ -211,7 +211,7 @@
                     android:layout_height="22dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_paid"
-                    app:tint="@color/accent_green" />
+                    app:tint="@null" />
 
             </FrameLayout>
 

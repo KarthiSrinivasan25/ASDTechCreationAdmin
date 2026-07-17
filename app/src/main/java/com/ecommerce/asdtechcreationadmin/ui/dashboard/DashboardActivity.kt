@@ -94,6 +94,8 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
 
+         binding.bottomNavigation.itemIconTintList = null
+
         BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_dashboard)
     }
 
