@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/nav_dashboard"
         android:title="Dashboard"
-        android:icon="@drawable/ic_dashboard"/>
+        android:icon="@drawable/ic_dashboard"
+        app:itemIconTint="@null"/>
 
     <item
         android:id="@+id/nav_clients"
         android:title="Clients"
-        android:icon="@drawable/ic_clients"/>
+        android:icon="@drawable/ic_clients"
+        app:itemIconTint="@null"/>
 
     <item
         android:id="@+id/nav_invoice"
         android:title="Invoice"
-        android:icon="@drawable/ic_invoice"/>
+        android:icon="@drawable/ic_invoice"
+        app:itemIconTint="@null"/>
 
     <item
         android:id="@+id/nav_payment"
         android:title="Payments"
-        android:icon="@drawable/ic_payment"/>
+        android:icon="@drawable/ic_payment"
+        app:itemIconTint="@null"/>
 
     <item
         android:id="@+id/nav_settings"
         android:title="Settings"
-        android:icon="@drawable/ic_settings"/>
+        android:icon="@drawable/ic_settings"
+        app:itemIconTint="@null"/>
 
 </menu>
