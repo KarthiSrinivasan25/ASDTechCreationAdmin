@@ -95,7 +95,7 @@ object BottomNavHelper {
                     com.google.android.material.R.id.navigation_bar_item_icon_view
                 )
 
-            if (itemView.itemData.isChecked) {
+       if (itemView.itemData?.isChecked == true) {
 
                 iconView.background =
                     ContextCompat.getDrawable(
@@ -133,7 +133,7 @@ object BottomNavHelper {
             val itemView =
                 menuView.getChildAt(i) as NavigationBarItemView
 
-            if (itemView.itemData.itemId == selectedItemId) {
+          if (itemView.itemData?.itemId == selectedItemId) {
 
                 val iconView =
                     itemView.findViewById<ImageView>(
