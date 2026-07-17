@@ -102,7 +102,6 @@ class ClientActivity : AppCompatActivity() {
         }
 
         BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_clients)
-         binding.bottomNavigation.itemIconTintList = null
 
         setupSearch()
         setupTabs()
