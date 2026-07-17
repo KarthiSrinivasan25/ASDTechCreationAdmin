@@ -55,7 +55,8 @@
     app:itemIconTint="@color/nav_icon_color"
     app:itemTextColor="@color/nav_icon_color"
 
-    app:itemActiveIndicatorStyle="@style/BottomNavIndicator"
+    app:itemActiveIndicatorEnabled="true"
+app:itemActiveIndicatorColor="@color/nav_selected_background"
 
     app:labelVisibilityMode="labeled"
     app:menu="@menu/bottom_nav_menu" />

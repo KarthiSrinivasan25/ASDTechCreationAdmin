@@ -2,11 +2,18 @@
 <resources>
 
     <!-- Bottom Navigation Selected Indicator -->
-    <style name="BottomNavIndicator">
+    <!-- <style name="BottomNavIndicator">
     <item name="android:color">@color/nav_selected_background</item>
     <item name="android:width">48dp</item>
     <item name="android:height">32dp</item>
     <item name="shapeAppearanceOverlay">@style/RoundedIndicator</item>
+</style> -->
+
+<style name="BottomNavIndicator">
+    <item name="android:width">48dp</item>
+    <item name="android:height">48dp</item>
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">50%</item>
 </style>
 
     <!-- Rounded Shape for Indicator -->

@@ -127,6 +127,9 @@ private val timeRunnable = object : Runnable {
 
         BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_dashboard)
          binding.bottomNavigation.itemIconTintList = null
+          binding.bottomNavigation.itemActiveIndicatorEnabled = true
+    binding.bottomNavigation.itemActiveIndicatorWidth = 48
+    binding.bottomNavigation.itemActiveIndicatorHeight = 48
     }
 
     private fun loadDashboard() {
