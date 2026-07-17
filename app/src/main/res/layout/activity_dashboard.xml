@@ -51,7 +51,7 @@
         android:background="@drawable/bg_bottom_nav"
         android:elevation="12dp"
         app:itemIconSize="22dp"
-        app:itemIconTint="@color/nav_icon_color"
+        app:itemIconTint="@null"
         app:itemTextColor="@color/nav_icon_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />

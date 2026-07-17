@@ -100,7 +100,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@drawable/ic_email"
-                    app:tint="#D6DEFF" />
+                    app:tint="@null" />
 
                 <EditText
                     android:id="@+id/etEmail"
@@ -133,7 +133,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@drawable/ic_lock"
-                    app:tint="#D6DEFF" />
+                    app:tint="@null" />
 
                 <EditText
                     android:id="@+id/etPassword"
