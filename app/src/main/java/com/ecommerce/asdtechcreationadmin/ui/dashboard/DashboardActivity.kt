@@ -25,6 +25,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.Calendar
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -51,23 +54,38 @@ class DashboardActivity : AppCompatActivity() {
         loadDashboard()
     }
 
-    private fun setupHeader() {
+   private fun setupHeader() {
 
-        val name = sessionManager.getName()
-        val displayName = if (name.isNotBlank()) name else "Admin"
+    val name = sessionManager.getName()
+    val displayName = if (name.isNotBlank()) name else "Admin"
 
-        binding.dashboardHeader.txtWelcome.text = "Welcome, $displayName"
-        binding.dashboardHeader.txtAvatarInitial.text =
-            displayName.trim().take(1).uppercase()
+    binding.dashboardHeader.txtWelcome.text = "Welcome, $displayName"
 
-        val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+    binding.dashboardHeader.txtAvatarInitial.text =
+        displayName.trim().take(1).uppercase()
 
-        binding.dashboardHeader.txtGreetingTime.text = when {
-            hour < 12 -> "Good Morning \uD83D\uDC4B"
-            hour < 17 -> "Good Afternoon \uD83D\uDC4B"
-            else -> "Good Evening \uD83D\uDC4B"
-        }
+
+    val calendar = Calendar.getInstance()
+
+    val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+    binding.dashboardHeader.txtGreetingTime.text = when {
+        hour < 12 -> "Good Morning 👋"
+        hour < 17 -> "Good Afternoon 👋"
+        else -> "Good Evening 👋"
     }
+
+
+    // Date & Time
+
+    val dateFormat = SimpleDateFormat(
+    "EEE, dd MMM\nhh:mm a",
+    Locale.getDefault()
+)
+
+    binding.dashboardHeader.txtDateTime.text =
+        dateFormat.format(Date())
+}
 
 
     private fun setupRecyclerViews() {
