@@ -1,6 +1,5 @@
 package com.ecommerce.asdtechcreationadmin.ui.dashboard
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
@@ -16,10 +15,7 @@ import com.ecommerce.asdtechcreationadmin.session.SessionManager
 import com.ecommerce.asdtechcreationadmin.ui.adapter.PendingClientAdapter
 import com.ecommerce.asdtechcreationadmin.ui.adapter.RecentInvoiceAdapter
 import com.ecommerce.asdtechcreationadmin.ui.adapter.RecentPaymentAdapter
-import com.ecommerce.asdtechcreationadmin.ui.client.ClientActivity
-import com.ecommerce.asdtechcreationadmin.ui.invoice.InvoiceActivity
-import com.ecommerce.asdtechcreationadmin.ui.payment.PaymentActivity
-import com.ecommerce.asdtechcreationadmin.ui.settings.SettingsActivity
+import com.ecommerce.asdtechcreationadmin.ui.common.BottomNavHelper
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -98,43 +94,7 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun setupBottomNavigation() {
 
-        
-        binding.bottomNavigation.itemIconTintList = null
-        binding.bottomNavigation.itemTextColor = null
-
-        binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
-
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-
-            when (item.itemId) {
-
-                R.id.nav_dashboard -> {
-                    true
-                }
-
-                R.id.nav_clients -> {
-                    startActivity(Intent(this, ClientActivity::class.java))
-                    true
-                }
-
-                R.id.nav_invoice -> {
-                    startActivity(Intent(this, InvoiceActivity::class.java))
-                    true
-                }
-
-                R.id.nav_payment -> {
-                    startActivity(Intent(this, PaymentActivity::class.java))
-                    true
-                }
-
-                R.id.nav_settings -> {
-                    startActivity(Intent(this, SettingsActivity::class.java))
-                    true
-                }
-
-                else -> false
-            }
-        }
+        BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_dashboard)
     }
 
     private fun loadDashboard() {

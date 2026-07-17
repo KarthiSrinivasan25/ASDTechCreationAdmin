@@ -1,379 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_screen_background"
     android:fillViewport="true"
-    android:background="@drawable/bg_screen_background">
-
+    android:fitsSystemWindows="true">
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Hero -->
 
-        <!-- Premium Header -->
+        <!-- Hero -->
 
-        <FrameLayout
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_header_gradient"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="32dp"
+    android:paddingBottom="64dp">
 
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@drawable/bg_header_gradient">
+    <ImageView
+        android:id="@+id/imgHeroBanner"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+       
+        android:scaleType="centerCrop"
+        android:src="@drawable/login" />
 
+</LinearLayout>
 
-            <ImageView
-
-                android:id="@+id/imgHeroBanner"
-
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-
-                android:scaleType="centerCrop"
-
-                android:alpha="0.9"
-
-                android:src="@drawable/login"/>
-
-
-            <View
-
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-
-                android:background="#55000000"/>
-
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_gravity="center"
-
-                android:gravity="center"
-
-                android:orientation="vertical">
-
-
-                <ImageView
-
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-
-                    android:padding="15dp"
-
-                    android:background="@drawable/bg_circle_white"
-
-                    android:src="@drawable/ic_lock"/>
-
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="16dp"
-
-                    android:text="Admin Portal"
-
-                    android:textColor="@color/white"
-
-                    android:textSize="28sp"
-
-                    android:textStyle="bold"/>
-
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="Secure Dashboard Access"
-
-                    android:textColor="#DDFFFFFF"
-
-                    android:textSize="14sp"/>
-
-
-            </LinearLayout>
-
-
-        </FrameLayout>
-
-
-
-        <!-- Login Card -->
-
+        <!-- Form Card -->
 
         <com.google.android.material.card.MaterialCardView
-
-
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-
             android:layout_marginStart="20dp"
-
             android:layout_marginEnd="20dp"
-
-            android:layout_marginTop="-55dp"
-
-            android:layout_marginBottom="30dp"
-
-
-            app:cardCornerRadius="32dp"
-
-            app:cardElevation="16dp"
-
-            app:cardBackgroundColor="@color/surface">
-
+            android:layout_marginTop="-40dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="@color/surface"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
-
-
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical"
-
-                android:padding="28dp">
-
+                android:padding="24dp">
 
                 <TextView
-
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
-
-                    android:text="Welcome Back 👋"
-
-                    android:textSize="26sp"
-
-                    android:textStyle="bold"
-
-                    android:textColor="@color/text_primary"/>
-
-
+                    android:text="Welcome Back!"
+                    android:textColor="@color/text_primary"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
-
-                    android:layout_marginTop="8dp"
-
-                    android:text="Login to manage your admin dashboard"
-
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="26dp"
+                    android:text="Sign in to continue to Admin Panel"
                     android:textColor="@color/text_secondary"
-
-                    android:textSize="14sp"/>
-
-
+                    android:textSize="14sp" />
 
                 <!-- Email -->
 
-
-                <com.google.android.material.textfield.TextInputLayout
-
-                    android:layout_width="match_parent"
-
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="28dp"
-
-                    app:boxBackgroundMode="outline"
-
-                    app:boxCornerRadiusTopStart="18dp"
-
-                    app:boxCornerRadiusTopEnd="18dp"
-
-                    app:boxCornerRadiusBottomStart="18dp"
-
-                    app:boxCornerRadiusBottomEnd="18dp"
-
-                    app:startIconDrawable="@drawable/ic_email">
-
-
-                    <com.google.android.material.textfield.TextInputEditText
-
-                        android:id="@+id/etEmail"
-
-                        android:layout_width="match_parent"
-
-                        android:layout_height="55dp"
-
-                        android:hint="Email Address"
-
-                        android:inputType="textEmailAddress"/>
-
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                <!-- Password -->
-
-
-                <com.google.android.material.textfield.TextInputLayout
-
-
-                    android:layout_width="match_parent"
-
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginTop="16dp"
-
-                    app:endIconMode="password_toggle"
-
-                    app:boxBackgroundMode="outline"
-
-                    app:boxCornerRadiusTopStart="18dp"
-
-                    app:boxCornerRadiusTopEnd="18dp"
-
-                    app:boxCornerRadiusBottomStart="18dp"
-
-                    app:boxCornerRadiusBottomEnd="18dp"
-
-                    app:startIconDrawable="@drawable/ic_lock">
-
-
-                    <com.google.android.material.textfield.TextInputEditText
-
-
-                        android:id="@+id/etPassword"
-
-
-                        android:layout_width="match_parent"
-
-
-                        android:layout_height="55dp"
-
-
-                        android:hint="Password"
-
-
-                        android:inputType="textPassword"/>
-
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
                 <LinearLayout
-
                     android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:addStatesFromChildren="true"
+                    android:background="@drawable/bg_edittext"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
-                    android:layout_height="wrap_content"
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_email"
+                        app:tint="@null" />
 
-                    android:layout_marginTop="18dp"
-
-                    android:gravity="center_vertical">
-
-
-                    <CheckBox
-
-                        android:id="@+id/cbRemember"
-
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-
-                        android:text="Remember me"/>
-
-
-                    <Space
-
+                    <EditText
+                        android:id="@+id/etEmail"
                         android:layout_width="0dp"
-
-                        android:layout_height="1dp"
-
-                        android:layout_weight="1"/>
-
-
-                    <TextView
-
-                        android:id="@+id/txtForgotPassword"
-
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-
-                        android:text="Forgot Password?"
-
-                        android:textColor="@color/accent_blue"
-
-                        android:textStyle="bold"/>
-
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:background="@android:color/transparent"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_muted"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
+                <!-- Password -->
 
-
-                <com.google.android.material.button.MaterialButton
-
-
-                    android:id="@+id/btnLogin"
-
-
+                <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="16dp"
+                    android:addStatesFromChildren="true"
+                    android:background="@drawable/bg_edittext"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_lock"
+                        app:tint="@null" />
 
-                    android:layout_height="58dp"
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:background="@android:color/transparent"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_muted"
+                        android:textSize="14sp" />
 
+                    <ImageView
+                        android:id="@+id/imgEye"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_eye"
+                        app:tint="@color/text_secondary" />
 
-                    android:layout_marginTop="28dp"
+                </LinearLayout>
 
+                <!-- Remember / Forgot -->
 
-                    android:text="Sign In"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical">
 
-                    android:textSize="16sp"
+                    <CheckBox
+                        android:id="@+id/cbRemember"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/accent_blue"
+                        android:text="Remember Me"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
 
-                    android:textStyle="bold"
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
-                    android:textAllCaps="false"
+                    <TextView
+                        android:id="@+id/txtForgotPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Forgot Password?"
+                        android:textColor="@color/accent_blue"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
 
+                </LinearLayout>
 
-                    android:textColor="@color/white"
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp">
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="@drawable/bg_button_gradient"
+                        android:backgroundTint="@null"
+                        android:elevation="0dp"
+                        android:text="Login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="16dp"
+                        app:rippleColor="#33FFFFFF" />
 
-                    android:background="@drawable/bg_button_gradient"
+                    <ProgressBar
+                        android:id="@+id/progressLogin"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="gone" />
 
-
-                    app:cornerRadius="20dp"/>
-
-
-
-                <ProgressBar
-
-                    android:id="@+id/progressLogin"
-
-                    android:layout_width="30dp"
-
-                    android:layout_height="30dp"
-
-                    android:layout_gravity="center"
-
-                    android:layout_marginTop="15dp"
-
-                    android:visibility="gone"/>
-
+                </FrameLayout>
 
             </LinearLayout>
 
-
         </com.google.android.material.card.MaterialCardView>
 
-
     </LinearLayout>
-
 
 </androidx.core.widget.NestedScrollView>

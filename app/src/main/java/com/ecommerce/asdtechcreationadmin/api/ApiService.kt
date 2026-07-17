@@ -39,8 +39,12 @@ interface ApiService {
         @Field("email") email: String,
         @Field("phone") phone: String,
         @Field("address") address: String,
-        @Field("notes") notes: String,
-        @Field("status") status: String
+        @Field("gst_number") gstNumber: String,
+        @Field("project_name") projectName: String,
+        @Field("service") service: String,
+        @Field("project_value") projectValue: String,
+        @Field("status") status: String,
+        @Field("notes") notes: String
     ): Call<SaveClientResponse>
 
 }

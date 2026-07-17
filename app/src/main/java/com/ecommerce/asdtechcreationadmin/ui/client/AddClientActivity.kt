@@ -20,11 +20,20 @@ class AddClientActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddClientBinding
 
+    private var selectedStatus: String = "Active"
+    private lateinit var statusChips: List<TextView>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityAddClientBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        statusChips = listOf(
+            binding.statusActive,
+            binding.statusCompleted,
+            binding.statusOnHold
+        )
 
         binding.btnBack.setOnClickListener { finish() }
 
@@ -32,19 +41,43 @@ class AddClientActivity : AppCompatActivity() {
             showNotification("Logo upload coming soon", isSuccess = true)
         }
 
+        binding.statusActive.setOnClickListener { selectStatus(binding.statusActive, "Active") }
+        binding.statusCompleted.setOnClickListener { selectStatus(binding.statusCompleted, "Completed") }
+        binding.statusOnHold.setOnClickListener { selectStatus(binding.statusOnHold, "On Hold") }
+
         binding.btnSaveClient.setOnClickListener {
             saveClient()
+        }
+    }
+
+    private fun selectStatus(selected: TextView, status: String) {
+
+        selectedStatus = status
+
+        for (chip in statusChips) {
+
+            if (chip == selected) {
+                chip.setBackgroundResource(R.drawable.bg_filter_chip_selected)
+                chip.setTextColor(ContextCompat.getColor(this, R.color.white))
+            } else {
+                chip.setBackgroundResource(R.drawable.bg_filter_chip_unselected)
+                chip.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
+            }
         }
     }
 
     private fun saveClient() {
 
         val name = binding.etClientName.text.toString().trim()
+        val company = binding.etCompanyName.text.toString().trim()
         val email = binding.etEmail.text.toString().trim()
         val phone = binding.etPhone.text.toString().trim()
-        val company = binding.etCompanyName.text.toString().trim()
+        val gstNumber = binding.etGstNumber.text.toString().trim()
         val address = binding.etAddress.text.toString().trim()
-        val website = binding.etWebsite.text.toString().trim()
+        val projectName = binding.etProjectName.text.toString().trim()
+        val service = binding.etService.text.toString().trim()
+        val projectValue = binding.etProjectValue.text.toString().trim()
+        val notes = binding.etNotes.text.toString().trim()
 
         if (name.isEmpty()) {
             binding.etClientName.error = "Enter client name"
@@ -66,8 +99,6 @@ class AddClientActivity : AppCompatActivity() {
             return
         }
 
-        val notes = if (website.isNotEmpty()) "Website: $website" else ""
-
         setLoading(true)
 
         ApiClient.apiService.saveClient(
@@ -76,8 +107,12 @@ class AddClientActivity : AppCompatActivity() {
             email = email,
             phone = phone,
             address = address,
-            notes = notes,
-            status = "Active"
+            gstNumber = gstNumber,
+            projectName = projectName,
+            service = service,
+            projectValue = if (projectValue.isEmpty()) "0" else projectValue,
+            status = selectedStatus,
+            notes = notes
         ).enqueue(object : Callback<SaveClientResponse> {
 
             override fun onResponse(
@@ -123,11 +158,15 @@ class AddClientActivity : AppCompatActivity() {
 
         binding.btnSaveClient.isEnabled = !loading
         binding.etClientName.isEnabled = !loading
+        binding.etCompanyName.isEnabled = !loading
         binding.etEmail.isEnabled = !loading
         binding.etPhone.isEnabled = !loading
-        binding.etCompanyName.isEnabled = !loading
+        binding.etGstNumber.isEnabled = !loading
         binding.etAddress.isEnabled = !loading
-        binding.etWebsite.isEnabled = !loading
+        binding.etProjectName.isEnabled = !loading
+        binding.etService.isEnabled = !loading
+        binding.etProjectValue.isEnabled = !loading
+        binding.etNotes.isEnabled = !loading
 
         binding.btnSaveClient.text = if (loading) "" else "Save Client"
         binding.progressSave.visibility = if (loading) View.VISIBLE else View.GONE
