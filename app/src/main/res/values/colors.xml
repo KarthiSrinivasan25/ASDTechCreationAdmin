@@ -45,4 +45,7 @@
     <!-- Bottom navigation -->
     <color name="nav_selected">#2563EB</color>
     <color name="nav_unselected">#9CA3AF</color>
+
+
+    <color name="nav_selected_background">#DBEAFE</color>
 </resources>

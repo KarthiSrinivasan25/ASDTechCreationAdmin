@@ -148,13 +148,12 @@
                     android:textColorHint="#A6B3E8"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/imgEye"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_eye"
-                    app:tint="@null" />
-
+               <ImageView
+    android:id="@+id/imgEye"
+    android:layout_width="18dp"
+    android:layout_height="18dp"
+    android:src="@drawable/ic_eye"
+    app:tint="@color/text_secondary" />
             </LinearLayout>
 
             <!-- Remember / Forgot -->
