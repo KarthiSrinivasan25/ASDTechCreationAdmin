@@ -93,9 +93,16 @@ class ClientActivity : AppCompatActivity() {
             )
         }
 
+        binding.btnRefresh.setOnClickListener {
+            it.animate()
+                .rotationBy(360f)
+                .setDuration(500)
+                .start()
+            loadClients()
+        }
+
         BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_clients)
-        binding.bottomNavigation.itemIconTintList = null
-        
+
         setupSearch()
         setupTabs()
         loadClients()
@@ -170,9 +177,11 @@ class ClientActivity : AppCompatActivity() {
 
                 if (response.isSuccessful && response.body()?.status == "success") {
                     allClients = response.body()?.data ?: emptyList()
+                    binding.txtTotalClientsCount.text = allClients.size.toString()
                     applyFilter()
                 } else {
                     allClients = emptyList()
+                    binding.txtTotalClientsCount.text = "0"
                     applyFilter()
                     showError("Unable to load clients")
                 }
@@ -241,10 +250,6 @@ class ClientActivity : AppCompatActivity() {
 
         val container = binding.paginationContainer
         container.removeAllViews()
-
-        if (totalPages <= 1) {
-            return
-        }
 
         container.addView(createArrowButton(R.drawable.ic_back, currentPage > 1) {
             currentPage--

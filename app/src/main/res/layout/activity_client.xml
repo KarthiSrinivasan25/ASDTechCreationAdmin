@@ -43,26 +43,39 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <FrameLayout
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTotalClientsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/text_on_gradient"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Clients"
+                    android:textColor="@color/text_on_gradient_muted"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnRefresh"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
-                android:background="@drawable/bg_notification_icon">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_notification" />
-
-                <View
-                    android:layout_width="9dp"
-                    android:layout_height="9dp"
-                    android:layout_gravity="top|end"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="6dp"
-                    android:background="@drawable/bg_notification_dot" />
-
-            </FrameLayout>
+                android:background="@drawable/bg_notification_icon"
+                android:padding="10dp"
+                android:src="@drawable/ic_refresh"
+                app:tint="@color/text_on_gradient" />
 
         </LinearLayout>
 
@@ -271,7 +284,7 @@
             android:background="@drawable/bg_bottom_nav"
             android:elevation="12dp"
             app:itemIconSize="22dp"
-            app:itemIconTint="@null"
+            app:itemIconTint="@color/nav_icon_color"
             app:itemTextColor="@color/nav_icon_color"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu" />

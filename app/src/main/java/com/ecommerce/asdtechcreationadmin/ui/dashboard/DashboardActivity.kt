@@ -2,6 +2,8 @@ package com.ecommerce.asdtechcreationadmin.ui.dashboard
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,11 +27,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.Calendar
-import android.os.Handler
-import android.os.Looper
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -40,6 +37,17 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var invoiceAdapter: RecentInvoiceAdapter
     private lateinit var paymentAdapter: RecentPaymentAdapter
     private lateinit var pendingAdapter: PendingClientAdapter
+
+    private val bannerImages = listOf(R.drawable.login, R.drawable.login_banner)
+    private var bannerIndex = 0
+    private var showingBannerA = true
+    private val bannerHandler = Handler(Looper.getMainLooper())
+    private val bannerRunnable = object : Runnable {
+        override fun run() {
+            crossfadeBanner()
+            bannerHandler.postDelayed(this, 3500)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,52 +62,55 @@ class DashboardActivity : AppCompatActivity() {
         setupRecyclerViews()
         setupBottomNavigation()
         loadDashboard()
+
+        bannerHandler.postDelayed(bannerRunnable, 3500)
     }
 
-
-    private val timeHandler = Handler(Looper.getMainLooper())
-
-private val timeRunnable = object : Runnable {
-    override fun run() {
-
-        val dateFormat = SimpleDateFormat(
-            "EEE, dd MMM\nhh:mm:ss a",
-            Locale.getDefault()
-        )
-
-        binding.dashboardHeader.txtDateTime.text =
-            dateFormat.format(Date())
-
-        timeHandler.postDelayed(this, 1000)
+    override fun onDestroy() {
+        super.onDestroy()
+        bannerHandler.removeCallbacks(bannerRunnable)
     }
-}
 
-private fun setupHeader() {
+    private fun crossfadeBanner() {
 
-    val name = sessionManager.getName()
-    val displayName = if (name.isNotBlank()) name else "Admin"
+        bannerIndex = (bannerIndex + 1) % bannerImages.size
+        val nextImage = bannerImages[bannerIndex]
 
-    binding.dashboardHeader.txtWelcome.text =
-        "Welcome, $displayName"
+        val incoming = if (showingBannerA)
+            binding.dashboardBanner.imgBannerB
+        else
+            binding.dashboardBanner.imgBannerA
 
-    binding.dashboardHeader.txtAvatarInitial.text =
-        displayName.trim().take(1).uppercase()
+        val outgoing = if (showingBannerA)
+            binding.dashboardBanner.imgBannerA
+        else
+            binding.dashboardBanner.imgBannerB
 
+        incoming.setImageResource(nextImage)
+        incoming.alpha = 0f
+        incoming.animate().alpha(1f).setDuration(800).start()
+        outgoing.animate().alpha(0f).setDuration(800).start()
 
-    val hour = Calendar.getInstance()
-        .get(Calendar.HOUR_OF_DAY)
+        showingBannerA = !showingBannerA
+    }
 
-    binding.dashboardHeader.txtGreetingTime.text =
-        when {
-            hour < 12 -> "Good Morning 👋"
-            hour < 17 -> "Good Afternoon 👋"
-            else -> "Good Evening 👋"
+    private fun setupHeader() {
+
+        val name = sessionManager.getName()
+        val displayName = if (name.isNotBlank()) name else "Admin"
+
+        binding.dashboardHeader.txtWelcome.text = "Welcome, $displayName"
+        binding.dashboardHeader.txtAvatarInitial.text =
+            displayName.trim().take(1).uppercase()
+
+        val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+
+        binding.dashboardHeader.txtGreetingTime.text = when {
+            hour < 12 -> "Good Morning \uD83D\uDC4B"
+            hour < 17 -> "Good Afternoon \uD83D\uDC4B"
+            else -> "Good Evening \uD83D\uDC4B"
         }
-
-
-    // Start live clock
-    timeHandler.post(timeRunnable)
-}
+    }
 
 
     private fun setupRecyclerViews() {
@@ -125,8 +136,6 @@ private fun setupHeader() {
     }
 
     private fun setupBottomNavigation() {
-
-         binding.bottomNavigation.itemIconTintList = null
 
         BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_dashboard)
     }
@@ -265,8 +274,5 @@ private fun setupHeader() {
         chart.invalidate()
     }
 
-override fun onDestroy() {
-    super.onDestroy()
-    timeHandler.removeCallbacks(timeRunnable)
-}
+
 }

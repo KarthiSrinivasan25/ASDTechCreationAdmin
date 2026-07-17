@@ -29,6 +29,10 @@
             android:paddingBottom="24dp">
 
             <include
+                android:id="@+id/dashboardBanner"
+                layout="@layout/layout_dashboard_banner" />
+
+            <include
                 android:id="@+id/dashboardCards"
                 layout="@layout/layout_dashboard_cards" />
 
@@ -51,7 +55,7 @@
         android:background="@drawable/bg_bottom_nav"
         android:elevation="12dp"
         app:itemIconSize="22dp"
-        app:itemIconTint="@null"
+        app:itemIconTint="@color/nav_icon_color"
         app:itemTextColor="@color/nav_icon_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />

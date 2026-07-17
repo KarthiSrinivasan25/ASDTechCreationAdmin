@@ -42,18 +42,27 @@
 
         </LinearLayout>
 
-        <!-- Live Date Time -->
-    <TextView
-        android:id="@+id/txtDateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:gravity="center"
-        android:lineSpacingExtra="2dp"
-        android:text="Fri, 17 Jul\n10:30:45 AM"
-        android:textColor="@color/text_on_gradient_muted"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+        <FrameLayout
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_notification_icon">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_notification" />
+
+            <View
+                android:layout_width="9dp"
+                android:layout_height="9dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_notification_dot" />
+
+        </FrameLayout>
 
         <FrameLayout
             android:layout_width="42dp"
