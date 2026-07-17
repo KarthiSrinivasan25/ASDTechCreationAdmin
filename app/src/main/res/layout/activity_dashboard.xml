@@ -51,13 +51,8 @@
         android:background="@drawable/bg_bottom_nav"
         android:elevation="12dp"
         app:itemIconSize="22dp"
-        app:itemIconTint="@color/nav_icon_static"
-        app:itemTextColor="@color/nav_icon_static"
-        app:itemRippleColor="@color/nav_indicator_bg"
-        app:itemActiveIndicatorColor="@color/nav_indicator_bg"
-        app:itemActiveIndicatorWidth="64dp"
-        app:itemActiveIndicatorHeight="32dp"
-        app:itemActiveIndicatorMarginHorizontal="6dp"
+        app:itemIconTint="@color/nav_icon_color"
+        app:itemTextColor="@color/nav_icon_color"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
 
