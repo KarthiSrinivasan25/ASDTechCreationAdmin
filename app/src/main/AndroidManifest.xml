@@ -19,6 +19,8 @@
 
         <activity android:name=".ui.client.ClientActivity"/>
         <activity android:name=".ui.client.AddClientActivity"/>
+        <activity android:name=".ui.client.ClientDetailsActivity"/>
+        <activity android:name=".ui.client.EditClientActivity"/>
         <activity android:name=".ui.invoice.InvoiceActivity"/>
         <activity android:name=".ui.payment.PaymentActivity"/>
         <activity android:name=".ui.settings.SettingsActivity"/>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="@color/gradient_start"
+                android:endColor="@color/gradient_end" />
+        </shape>
+    </item>
+
+    <!-- Decorative ring, top-right -->
+    <item
+        android:width="260dp"
+        android:height="260dp"
+        android:gravity="top|end"
+        android:right="-90dp"
+        android:top="-90dp">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="30dp"
+                android:color="#14FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Decorative filled glow, bottom-left -->
+    <item
+        android:width="320dp"
+        android:height="320dp"
+        android:gravity="bottom|start"
+        android:bottom="-140dp"
+        android:left="-120dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="160dp"
+                android:startColor="#1AFFFFFF"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Small ring accent, mid-right -->
+    <item
+        android:width="120dp"
+        android:height="120dp"
+        android:gravity="center_vertical|end"
+        android:right="20dp">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="10dp"
+                android:color="#0FFFFFFF" />
+        </shape>
+    </item>
+
+</layer-list>

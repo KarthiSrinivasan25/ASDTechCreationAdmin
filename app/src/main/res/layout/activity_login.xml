@@ -4,212 +4,233 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_screen_background"
+    android:background="@drawable/bg_login_screen"
     android:fillViewport="true"
     android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingStart="26dp"
+        android:paddingEnd="26dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp">
 
-        <!-- Hero -->
-
-        <!-- Hero -->
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_header_gradient"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingTop="32dp"
-    android:paddingBottom="64dp">
-
-    <ImageView
-        android:id="@+id/imgHeroBanner"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-       
-        android:scaleType="centerCrop"
-        android:src="@drawable/login" />
-
-</LinearLayout>
-
-        <!-- Form Card -->
+        <!-- Logo badge -->
 
         <com.google.android.material.card.MaterialCardView
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="14dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="AT"
+                android:textColor="@color/gradient_end"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="18dp"
+            android:text="ASD TechCreation"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="Admin Panel"
+            android:textColor="#D6DEFF"
+            android:textSize="13sp" />
+
+        <!-- Glass card -->
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="-40dp"
-            android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="@color/surface"
-            app:cardCornerRadius="28dp"
-            app:cardElevation="10dp">
+            android:layout_marginTop="34dp"
+            android:background="@drawable/bg_glass_card"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome Back"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="22dp"
+                android:text="Sign in to manage your business"
+                android:textColor="#D6DEFF"
+                android:textSize="13sp" />
+
+            <!-- Email -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:addStatesFromChildren="true"
+                android:background="@drawable/bg_glass_input"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_email"
+                    app:tint="#D6DEFF" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
+                    android:textColorHint="#A6B3E8"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!-- Password -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="14dp"
+                android:addStatesFromChildren="true"
+                android:background="@drawable/bg_glass_input"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_lock"
+                    app:tint="#D6DEFF" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/white"
+                    android:textColorHint="#A6B3E8"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/imgEye"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_eye"
+                    app:tint="#D6DEFF" />
+
+            </LinearLayout>
+
+            <!-- Remember / Forgot -->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical">
 
-                <TextView
+                <CheckBox
+                    android:id="@+id/cbRemember"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Welcome Back!"
-                    android:textColor="@color/text_primary"
-                    android:textSize="24sp"
+                    android:buttonTint="@color/white"
+                    android:text="Remember Me"
+                    android:textColor="#D6DEFF"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/txtForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="26dp"
-                    android:text="Sign in to continue to Admin Panel"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="14sp" />
-
-                <!-- Email -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:addStatesFromChildren="true"
-                    android:background="@drawable/bg_edittext"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_email"
-                        app:tint="@null" />
-
-                    <EditText
-                        android:id="@+id/etEmail"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginStart="12dp"
-                        android:background="@android:color/transparent"
-                        android:hint="Email"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/text_primary"
-                        android:textColorHint="@color/text_muted"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <!-- Password -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="16dp"
-                    android:addStatesFromChildren="true"
-                    android:background="@drawable/bg_edittext"
-                    android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_lock"
-                        app:tint="@null" />
-
-                    <EditText
-                        android:id="@+id/etPassword"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginStart="12dp"
-                        android:background="@android:color/transparent"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:textColor="@color/text_primary"
-                        android:textColorHint="@color/text_muted"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:id="@+id/imgEye"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_eye"
-                        app:tint="@color/text_secondary" />
-
-                </LinearLayout>
-
-                <!-- Remember / Forgot -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center_vertical">
-
-                    <CheckBox
-                        android:id="@+id/cbRemember"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/accent_blue"
-                        android:text="Remember Me"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="13sp" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/txtForgotPassword"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Forgot Password?"
-                        android:textColor="@color/accent_blue"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnLogin"
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:background="@drawable/bg_button_gradient"
-                        android:backgroundTint="@null"
-                        android:elevation="0dp"
-                        android:text="Login"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:cornerRadius="16dp"
-                        app:rippleColor="#33FFFFFF" />
-
-                    <ProgressBar
-                        android:id="@+id/progressLogin"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center"
-                        android:indeterminateTint="@color/white"
-                        android:visibility="gone" />
-
-                </FrameLayout>
 
             </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+            <!-- Login button -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:backgroundTint="@color/white"
+                    android:elevation="0dp"
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/gradient_end"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="16dp"
+                    app:rippleColor="#33FFFFFF" />
+
+                <ProgressBar
+                    android:id="@+id/progressLogin"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/gradient_end"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="26dp"
+            android:text="Need help? Contact support"
+            android:textColor="#B3BEEF"
+            android:textSize="12sp" />
 
     </LinearLayout>
 

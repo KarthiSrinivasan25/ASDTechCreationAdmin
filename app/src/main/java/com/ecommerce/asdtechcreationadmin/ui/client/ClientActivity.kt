@@ -15,6 +15,7 @@ import com.ecommerce.asdtechcreationadmin.R
 import com.ecommerce.asdtechcreationadmin.api.ApiClient
 import com.ecommerce.asdtechcreationadmin.data.model.Client
 import com.ecommerce.asdtechcreationadmin.data.model.ClientsResponse
+import com.ecommerce.asdtechcreationadmin.data.model.SimpleResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityClientBinding
 import com.ecommerce.asdtechcreationadmin.ui.adapter.ClientAdapter
 import com.ecommerce.asdtechcreationadmin.ui.common.BottomNavHelper
@@ -42,6 +43,22 @@ class ClientActivity : AppCompatActivity() {
     private lateinit var tabs: List<TextView>
 
     private val addClientLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            loadClients()
+        }
+    }
+
+    private val detailsLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            loadClients()
+        }
+    }
+
+    private val editLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == RESULT_OK) {
@@ -346,20 +363,72 @@ class ClientActivity : AppCompatActivity() {
     private fun showClientMenu(client: Client, anchor: View) {
 
         val popup = PopupMenu(this, anchor)
-        popup.menu.add("View Details")
-        popup.menu.add("Edit")
-        popup.menu.add("Delete")
+        popup.menu.add(0, 1, 0, "View Details")
+        popup.menu.add(0, 2, 1, "Edit")
+        popup.menu.add(0, 3, 2, "Delete")
 
-        popup.setOnMenuItemClickListener {
-            Snackbar.make(
-                binding.root,
-                "\"${it.title}\" — coming soon",
-                Snackbar.LENGTH_SHORT
-            ).show()
+        popup.setOnMenuItemClickListener { item ->
+
+            when (item.itemId) {
+
+                1 -> {
+                    detailsLauncher.launch(
+                        Intent(this, ClientDetailsActivity::class.java)
+                            .putExtra(ClientDetailsActivity.EXTRA_CLIENT_ID, client.id)
+                    )
+                }
+
+                2 -> {
+                    editLauncher.launch(
+                        Intent(this, EditClientActivity::class.java)
+                            .putExtra(EditClientActivity.EXTRA_CLIENT_ID, client.id)
+                    )
+                }
+
+                3 -> {
+                    confirmDelete(client)
+                }
+            }
+
             true
         }
 
         popup.show()
+    }
+
+    private fun confirmDelete(client: Client) {
+
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Delete Client")
+            .setMessage("Are you sure you want to delete \"${client.client_name}\"? This action cannot be undone.")
+            .setPositiveButton("Delete") { _, _ -> deleteClient(client) }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun deleteClient(client: Client) {
+
+        ApiClient.apiService.deleteClient(client.id).enqueue(object : Callback<SimpleResponse> {
+
+            override fun onResponse(
+                call: Call<SimpleResponse>,
+                response: Response<SimpleResponse>
+            ) {
+
+                val body = response.body()
+
+                if (response.isSuccessful && body?.status == "success") {
+                    Snackbar.make(binding.root, "Client deleted", Snackbar.LENGTH_SHORT).show()
+                    loadClients()
+                } else {
+                    showError(body?.message ?: "Failed to delete client")
+                }
+            }
+
+            override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
+                showError(t.message ?: "Something went wrong")
+            }
+        })
     }
 
     private fun showError(message: String) {
