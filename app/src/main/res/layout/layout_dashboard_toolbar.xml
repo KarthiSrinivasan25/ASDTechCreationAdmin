@@ -54,23 +54,21 @@
     android:textSize="12sp"
     android:textStyle="bold" />
 
-        <FrameLayout
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:background="@drawable/bg_avatar_circle">
+       <FrameLayout
+    android:layout_width="42dp"
+    android:layout_height="42dp"
+    android:background="@drawable/bg_avatar_circle"
+    android:padding="6dp">
 
-            <TextView
-                android:id="@+id/txtAvatarInitial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="A"
-                android:textColor="@color/text_on_gradient"
-                android:textStyle="bold"
-                android:textSize="16sp" />
+    <ImageView
+        android:id="@+id/imgCompanyLogo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:src="@drawable/company_logo"
+        android:scaleType="centerCrop" />
 
-        </FrameLayout>
-
+</FrameLayout>
     </LinearLayout>
 
     <TextView

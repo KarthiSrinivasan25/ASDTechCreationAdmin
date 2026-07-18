@@ -82,19 +82,22 @@ private val timeRunnable = object : Runnable {
     binding.dashboardHeader.txtWelcome.text =
         "Welcome, $displayName"
 
-    binding.dashboardHeader.txtAvatarInitial.text =
-        displayName.trim().take(1).uppercase()
+      binding.dashboardHeader.imgCompanyLogo.setImageResource(
+        R.drawable.company_logo
+    )
+
 
 
     val hour = Calendar.getInstance()
         .get(Calendar.HOUR_OF_DAY)
 
-    binding.dashboardHeader.txtGreetingTime.text =
-        when {
-            hour < 12 -> "Good Morning 👋"
-            hour < 17 -> "Good Afternoon 👋"
-            else -> "Good Evening 👋"
-        }
+   binding.dashboardHeader.txtGreetingTime.text =
+    when {
+        hour < 12 -> "Good Morning 👋"
+        hour < 17 -> "Good Afternoon 👋"
+        hour < 21 -> "Good Evening 👋"
+        else -> "Good Night 🌙"
+    }
 
 
     // Start live clock
@@ -125,12 +128,13 @@ private val timeRunnable = object : Runnable {
 
     private fun setupBottomNavigation() {
 
-        BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_dashboard)
-         binding.bottomNavigation.itemIconTintList = null
-          binding.bottomNavigation.itemActiveIndicatorEnabled = true
-    binding.bottomNavigation.itemActiveIndicatorWidth = 48
-    binding.bottomNavigation.itemActiveIndicatorHeight = 48
-    }
+    BottomNavHelper.setup(
+        this,
+        binding.bottomNavigation,
+        R.id.nav_dashboard
+    )
+
+}
 
     private fun loadDashboard() {
 
