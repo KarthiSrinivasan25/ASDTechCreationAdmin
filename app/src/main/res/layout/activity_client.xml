@@ -291,16 +291,14 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddClient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="86dp"
-        android:backgroundTint="@color/accent_purple"
-        android:src="@drawable/ic_add"
-        app:tint="@color/white" />
+     <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottomNavigation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_nav"
+    android:elevation="12dp"
+    app:itemIconSize="22dp"
+    app:labelVisibilityMode="labeled"
+    app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>
