@@ -30,6 +30,8 @@ import android.os.Looper
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.content.Intent
+import com.ecommerce.asdtechcreationadmin.ui.profile.ProfileActivity
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -99,7 +101,16 @@ private val timeRunnable = object : Runnable {
         else -> "Good Night 🌙"
     }
 
+binding.dashboardHeader.layoutProfile.setOnClickListener {
 
+    startActivity(
+        Intent(
+            this,
+            ProfileActivity::class.java
+        )
+    )
+
+}
     // Start live clock
     timeHandler.post(timeRunnable)
 }

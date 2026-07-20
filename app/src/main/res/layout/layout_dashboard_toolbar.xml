@@ -54,19 +54,22 @@
     android:textSize="12sp"
     android:textStyle="bold" />
 
-       <FrameLayout
+      <FrameLayout
+    android:id="@+id/layoutProfile"
     android:layout_width="42dp"
     android:layout_height="42dp"
     android:background="@drawable/bg_avatar_circle"
-    android:padding="6dp">
+    android:padding="6dp"
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/imgCompanyLogo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:src="@drawable/company_logo"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/company_logo" />
 
 </FrameLayout>
     </LinearLayout>
