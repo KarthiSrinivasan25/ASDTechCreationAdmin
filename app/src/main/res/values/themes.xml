@@ -17,8 +17,8 @@
 
     <style name="CardRoundedTop">
     <item name="cornerFamily">rounded</item>
-    <item name="cornerSizeTopLeft">0dp</item>
-    <item name="cornerSizeTopRight">45dp</item>
+    <item name="cornerSizeTopLeft">45dp</item>
+    <item name="cornerSizeTopRight">0dp</item>
     <item name="cornerSizeBottomLeft">0dp</item>
     <item name="cornerSizeBottomRight">0dp</item>
 </style>
