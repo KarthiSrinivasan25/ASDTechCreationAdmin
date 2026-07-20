@@ -177,30 +177,12 @@
             android:textStyle="bold"
             app:cornerRadius="14dp" />
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="LOGIN"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:backgroundTint="#7AA379"
-        app:cornerRadius="14dp" />
-
-    <ProgressBar
+  <ProgressBar
         android:id="@+id/progressLogin"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="center"
         android:visibility="gone" />
-
-</FrameLayout>
         <!-- VERSION -->
 
         <TextView
