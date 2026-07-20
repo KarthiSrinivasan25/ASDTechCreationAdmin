@@ -86,7 +86,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_email"
-                            app:tint="#8C8FA3" />
+                           s/>
 
                         <EditText
                             android:id="@+id/etEmail"
@@ -118,7 +118,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_lock"
-                            app:tint="#8C8FA3" />
+                            />
 
                         <EditText
                             android:id="@+id/etPassword"
@@ -240,59 +240,7 @@
 
                     <!-- SOCIAL LOGIN ROW -->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <FrameLayout
-                            android:id="@+id/btnGoogle"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginHorizontal="8dp"
-                            android:background="@drawable/bg_social_circle">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_google" />
-
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:id="@+id/btnFacebook"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginHorizontal="8dp"
-                            android:background="@drawable/bg_social_circle">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_facebook" />
-
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:id="@+id/btnApple"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginHorizontal="8dp"
-                            android:background="@drawable/bg_social_circle">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_apple" />
-
-                        </FrameLayout>
-
-                    </LinearLayout>
+                   
 
                 </LinearLayout>
 
@@ -300,16 +248,7 @@
 
             <!-- SIGN UP LINK -->
 
-            <TextView
-                android:id="@+id/txtSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="26dp"
-                android:text="Don't have an account? Sign up"
-                android:textColor="#D8D8D8"
-                android:textSize="13sp" />
-
+          
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
