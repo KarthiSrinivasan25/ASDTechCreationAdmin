@@ -14,10 +14,11 @@
         android:id="@+id/headerLayout"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:background="#0B4B3B"
+       
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+         android:background="@drawable/bg_header">
 
         <!-- Background Image -->
 
