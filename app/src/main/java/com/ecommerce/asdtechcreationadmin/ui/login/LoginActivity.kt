@@ -1,5 +1,6 @@
 package com.ecommerce.asdtechcreationadmin.ui.login
 
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.Color
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +26,6 @@ import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.view.animation.AnimationUtils
 
 
 class LoginActivity : AppCompatActivity() {
@@ -36,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
 
@@ -46,42 +48,21 @@ class LoginActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        val icons = arrayOf(
-    binding.iconWebsite,
-    binding.iconWhatsapp,
-    binding.iconEmail,
-    binding.iconCall
-)
 
 
-icons.forEachIndexed { index, imageView ->
+        // Icon continuous animation
 
-    imageView.alpha = 0f
-
-    imageView.translationY = 40f
-
-
-    imageView.animate()
-
-        .alpha(1f)
-
-        .translationY(0f)
-
-        .setDuration(400)
-
-        .setStartDelay(index * 150L)
-
-        .start()
-}
+        startIconAnimation()
 
 
 
-        // Company name shimmer animation
+        // Company text shimmer
+
         startCompanyNameAnimation()
 
 
 
-        // Password show/hide
+        // Password eye
 
         binding.imgEye.setOnClickListener {
 
@@ -126,8 +107,6 @@ icons.forEachIndexed { index, imageView ->
 
 
 
-        // Login button
-
         binding.btnLogin.setOnClickListener {
 
             login()
@@ -139,7 +118,76 @@ icons.forEachIndexed { index, imageView ->
 
 
 
-    // ASD TechCreation Gradient Animation
+    // Continuous icon floating animation
+
+    private fun startIconAnimation() {
+
+
+        val icons = arrayOf(
+
+            binding.iconWebsite,
+
+            binding.iconWhatsapp,
+
+            binding.iconEmail,
+
+            binding.iconCall
+
+        )
+
+
+
+        icons.forEachIndexed { index, icon ->
+
+
+            icon.alpha = 1f
+
+
+
+            val animator = ObjectAnimator.ofFloat(
+
+                icon,
+
+                "translationY",
+
+                0f,
+
+                -12f,
+
+                0f
+
+            )
+
+
+            animator.duration = 1400
+
+
+            animator.startDelay =
+                index * 200L
+
+
+            animator.repeatCount =
+                ObjectAnimator.INFINITE
+
+
+            animator.interpolator =
+                AccelerateDecelerateInterpolator()
+
+
+
+            animator.start()
+
+
+        }
+
+
+    }
+
+
+
+
+
+    // ASD TechCreation shimmer animation
 
     private fun startCompanyNameAnimation() {
 
@@ -153,23 +201,30 @@ icons.forEachIndexed { index, imageView ->
             val paint = textView.paint
 
 
-            val textWidth = paint.measureText(
-                textView.text.toString()
-            )
+            val textWidth =
+                paint.measureText(
+                    textView.text.toString()
+                )
 
 
 
             val animator = ValueAnimator.ofFloat(
+
                 -textWidth,
+
                 textWidth
+
             )
 
 
 
             animator.duration = 2500
 
+
             animator.repeatCount =
                 ValueAnimator.INFINITE
+
+
 
             animator.interpolator =
                 LinearInterpolator()
@@ -184,12 +239,14 @@ icons.forEachIndexed { index, imageView ->
 
 
 
-                val shader = LinearGradient(
+                paint.shader = LinearGradient(
 
                     x,
+
                     0f,
 
                     x + textWidth,
+
                     0f,
 
 
@@ -215,11 +272,7 @@ icons.forEachIndexed { index, imageView ->
 
 
 
-                paint.shader = shader
-
-
                 textView.invalidate()
-
 
             }
 
@@ -236,6 +289,8 @@ icons.forEachIndexed { index, imageView ->
 
 
 
+
+
     private fun login() {
 
 
@@ -248,26 +303,22 @@ icons.forEachIndexed { index, imageView ->
 
 
 
-        if (email.isEmpty()) {
+        if(email.isEmpty()){
 
             binding.etEmail.error =
                 "Enter Email"
 
             return
-
         }
 
 
 
-        if (password.isEmpty()) {
-
+        if(password.isEmpty()){
 
             binding.etPassword.error =
                 "Enter Password"
 
-
             return
-
         }
 
 
@@ -283,7 +334,7 @@ icons.forEachIndexed { index, imageView ->
                 password
             )
 
-        ).enqueue(object : Callback<LoginResponse> {
+        ).enqueue(object : Callback<LoginResponse>{
 
 
 
@@ -293,16 +344,14 @@ icons.forEachIndexed { index, imageView ->
 
                 response: Response<LoginResponse>
 
-            ) {
-
+            ){
 
 
                 setLoading(false)
 
 
 
-                if (response.isSuccessful) {
-
+                if(response.isSuccessful){
 
 
                     val body =
@@ -310,8 +359,7 @@ icons.forEachIndexed { index, imageView ->
 
 
 
-                    if (body != null && body.status) {
-
+                    if(body != null && body.status){
 
 
                         SessionManager(
@@ -358,13 +406,11 @@ icons.forEachIndexed { index, imageView ->
                             finish()
 
 
-
                         },600)
 
 
 
-                    } else {
-
+                    }else{
 
 
                         showNotification(
@@ -380,8 +426,7 @@ icons.forEachIndexed { index, imageView ->
 
 
 
-                } else {
-
+                }else{
 
 
                     showNotification(
@@ -395,7 +440,6 @@ icons.forEachIndexed { index, imageView ->
                 }
 
 
-
             }
 
 
@@ -407,18 +451,16 @@ icons.forEachIndexed { index, imageView ->
 
                 t: Throwable
 
-            ) {
-
+            ){
 
 
                 setLoading(false)
 
 
-
                 showNotification(
 
                     t.message
-                        ?: "Something went wrong. Please try again",
+                        ?: "Something went wrong",
 
                     false
 
@@ -431,16 +473,14 @@ icons.forEachIndexed { index, imageView ->
         })
 
 
-
     }
 
 
 
 
 
-    private fun setLoading(
-        loading: Boolean
-    ) {
+
+    private fun setLoading(loading:Boolean){
 
 
         binding.btnLogin.isEnabled =
@@ -461,12 +501,12 @@ icons.forEachIndexed { index, imageView ->
 
 
         binding.btnLogin.text =
-            if (loading) "" else "Login"
+            if(loading) "" else "Login"
 
 
 
         binding.progressLogin.visibility =
-            if (loading)
+            if(loading)
                 View.VISIBLE
             else
                 View.GONE
@@ -478,61 +518,51 @@ icons.forEachIndexed { index, imageView ->
 
 
 
+
     private fun showNotification(
 
-        message: String,
+        message:String,
 
-        isSuccess: Boolean
+        isSuccess:Boolean
 
-    ) {
-
-
-
-        val snackbar = Snackbar.make(
-
-            binding.root,
-
-            message,
-
-            Snackbar.LENGTH_LONG
-
-        )
+    ){
 
 
+        val snackbar =
+            Snackbar.make(
 
-        val snackbarView =
-            snackbar.view
+                binding.root,
+
+                message,
+
+                Snackbar.LENGTH_LONG
+
+            )
 
 
 
-        val colorRes =
-
-            if (isSuccess)
-
-                R.color.accent_green
-
-            else
-
-                R.color.accent_red
-
-
-
-
-
-        snackbarView.setBackgroundColor(
+        snackbar.view.setBackgroundColor(
 
             ContextCompat.getColor(
+
                 this,
-                colorRes
+
+                if(isSuccess)
+
+                    R.color.accent_green
+
+                else
+
+                    R.color.accent_red
+
             )
 
         )
 
 
 
-
         val textView =
-            snackbarView.findViewById<TextView>(
+            snackbar.view.findViewById<TextView>(
 
                 com.google.android.material.R.id.snackbar_text
 
@@ -543,12 +573,14 @@ icons.forEachIndexed { index, imageView ->
         textView.setTextColor(
 
             ContextCompat.getColor(
+
                 this,
+
                 R.color.white
+
             )
 
         )
-
 
 
         textView.gravity =
