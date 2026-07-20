@@ -3,7 +3,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0F3D2E">
 
     <!-- HEADER -->
 
@@ -11,7 +12,8 @@
         android:id="@+id/headerLayout"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:background="@drawable/bg_header"
+        android:background="#0F3D2E"
+        android:clipChildren="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,6 +27,15 @@
             android:scaleType="centerCrop"
             android:src="@drawable/login" />
 
+        <!-- Decorative Yellow Circle (behind logo, like reference) -->
+
+        <View
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_yellow_circle"
+            android:alpha="0.95" />
+
         <!-- Header Content -->
 
         <LinearLayout
@@ -33,10 +44,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
+            <!-- Logo inside its own small yellow circle badge -->
+
+            <FrameLayout
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@drawable/company_logo" />
+                android:background="@drawable/bg_yellow_circle_small">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/company_logo" />
+
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +80,7 @@
     </FrameLayout>
 
 
-    <!-- LOGIN CARD -->
+    <!-- LOGIN CARD (rounded top corner only, like reference) -->
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/loginCard"
@@ -87,39 +108,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email Address"
-                android:textColor="#000000"
+                android:textColor="#9E9E9E"
                 android:textSize="13sp" />
 
 
-            <!-- EMAIL FIELD -->
+            <!-- EMAIL FIELD (underline style) -->
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_email"
-                     />
-
-                <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#D3D3D3"
-                    android:hint="Enter Email"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#000000"
-                    android:textColorHint="#9E9E9E"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/underline_field"
+                android:hint="Enter Email"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="8dp"
+                android:textColor="#000000"
+                android:textColorHint="#B0B0B0"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
 
             <!-- PASSWORD TITLE -->
@@ -127,44 +134,39 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="22dp"
                 android:text="Password"
-                android:textColor="#000000"
+                android:textColor="#9E9E9E"
                 android:textSize="13sp" />
 
 
-            <!-- PASSWORD FIELD -->
+            <!-- PASSWORD FIELD (underline style) -->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_lock"
-                     />
 
                 <EditText
                     android:id="@+id/etPassword"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:backgroundTint="#D3D3D3"
+                    android:background="@drawable/underline_field"
                     android:hint="Enter Password"
                     android:inputType="textPassword"
+                    android:paddingBottom="8dp"
                     android:textColor="#000000"
-                    android:textColorHint="#9E9E9E"
+                    android:textColorHint="#B0B0B0"
                     android:textSize="15sp" />
 
                 <ImageView
                     android:id="@+id/imgEye"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="8dp"
                     android:src="@drawable/ic_eye"
                     app:tint="#757575" />
 
@@ -183,7 +185,8 @@
                     android:id="@+id/cbRemember"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remember Me"
+                    android:text="Remember me"
+                    android:textColor="#000000"
                     android:textSize="13sp" />
 
                 <View
@@ -198,7 +201,7 @@
                     android:text="Forgot Password?"
                     android:textColor="#000000"
                     android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
             </LinearLayout>
 
@@ -216,7 +219,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:cornerRadius="14dp" />
+                app:cornerRadius="27dp" />
 
 
             <!-- PROGRESS BAR -->
@@ -230,7 +233,22 @@
                 android:visibility="gone" />
 
 
-           
+            <!-- SIGN UP LINK -->
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/txtSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="Don't have an account? SIGN UP"
+                android:textColor="#757575"
+                android:textSize="13sp" />
 
         </LinearLayout>
 
