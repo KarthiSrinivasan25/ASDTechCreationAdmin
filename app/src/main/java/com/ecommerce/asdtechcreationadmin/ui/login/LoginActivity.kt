@@ -1,6 +1,5 @@
 package com.ecommerce.asdtechcreationadmin.ui.login
 
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -21,477 +20,166 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class LoginActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityLoginBinding
-
     private var isVisible = false
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Hide ActionBar
         supportActionBar?.hide()
 
-
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-
-
-
-        // Floating glow animation
-        startGlowAnimation()
-
-
-
-        // Password eye toggle
 
         binding.imgEye.setOnClickListener {
 
-
-            if(isVisible){
-
+            if (isVisible) {
 
                 binding.etPassword.inputType =
                     InputType.TYPE_CLASS_TEXT or
                             InputType.TYPE_TEXT_VARIATION_PASSWORD
 
+                binding.imgEye.setImageResource(R.drawable.ic_eye)
 
-                binding.imgEye.setImageResource(
-                    R.drawable.ic_eye
-                )
-
-
-            }else{
-
+            } else {
 
                 binding.etPassword.inputType =
                     InputType.TYPE_CLASS_TEXT or
                             InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
 
-
-                binding.imgEye.setImageResource(
-                    R.drawable.ic_eye_off
-                )
-
+                binding.imgEye.setImageResource(R.drawable.ic_eye_off)
 
             }
 
-
-
-            binding.etPassword.setSelection(
-                binding.etPassword.length()
-            )
-
-
+            binding.etPassword.setSelection(binding.etPassword.text.length)
             isVisible = !isVisible
-
         }
-
-
-
 
         binding.btnLogin.setOnClickListener {
-
             login()
-
         }
-
-
     }
 
+    private fun login() {
 
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
 
-
-    private fun startGlowAnimation(){
-
-
-        val animator1 =
-            ValueAnimator.ofFloat(
-                0.15f,
-                0.7f,
-                0.15f
-            )
-
-
-        animator1.duration = 3500
-
-        animator1.repeatCount =
-            ValueAnimator.INFINITE
-
-
-
-        animator1.addUpdateListener {
-
-
-            binding.glowOrb1.alpha =
-                it.animatedValue as Float
-
-
-        }
-
-
-
-        animator1.start()
-
-
-
-
-        val animator2 =
-            ValueAnimator.ofFloat(
-                0.2f,
-                0.6f,
-                0.2f
-            )
-
-
-        animator2.duration = 4500
-
-        animator2.repeatCount =
-            ValueAnimator.INFINITE
-
-
-
-        animator2.startDelay = 1000
-
-
-
-        animator2.addUpdateListener {
-
-
-            binding.glowOrb2.alpha =
-                it.animatedValue as Float
-
-
-        }
-
-
-
-        animator2.start()
-
-    }
-
-
-
-
-
-
-    private fun login(){
-
-
-        val email =
-            binding.etEmail.text.toString().trim()
-
-
-
-        val password =
-            binding.etPassword.text.toString().trim()
-
-
-
-
-        if(email.isEmpty()){
-
-            binding.etEmail.error =
-                "Enter Email"
-
+        if (email.isEmpty()) {
+            binding.etEmail.error = "Enter Email"
             return
-
         }
 
-
-
-        if(password.isEmpty()){
-
-            binding.etPassword.error =
-                "Enter Password"
-
+        if (password.isEmpty()) {
+            binding.etPassword.error = "Enter Password"
             return
-
         }
-
-
 
         setLoading(true)
 
-
-
-
         ApiClient.apiService.login(
-
-            LoginRequest(
-                email,
-                password
-            )
-
-
-        ).enqueue(object : Callback<LoginResponse>{
-
-
+            LoginRequest(email, password)
+        ).enqueue(object : Callback<LoginResponse> {
 
             override fun onResponse(
                 call: Call<LoginResponse>,
                 response: Response<LoginResponse>
-            ){
-
+            ) {
 
                 setLoading(false)
 
+                if (response.isSuccessful) {
 
+                    val body = response.body()
 
-                val body =
-                    response.body()
+                    if (body != null && body.status) {
 
-
-
-                if(response.isSuccessful &&
-                    body != null &&
-                    body.status){
-
-
-
-                    SessionManager(
-                        this@LoginActivity
-                    ).saveSession(
-
-
-                        body.token ?: "",
-
-
-                        body.admin?.name ?: "",
-
-
-                        body.admin?.email ?: ""
-
-                    )
-
-
-
-                    showNotification(
-
-                        body.message
-                            ?: "Login Successful",
-
-                        true
-
-                    )
-
-
-
-
-                    binding.root.postDelayed({
-
-
-
-                        startActivity(
-
-                            Intent(
-
-                                this@LoginActivity,
-
-                                DashboardActivity::class.java
-
-                            )
-
+                        SessionManager(this@LoginActivity).saveSession(
+                            body.token!!,
+                            body.admin!!.name,
+                            body.admin.email
                         )
 
+                        showNotification(
+                            body.message ?: "Login successful",
+                            isSuccess = true
+                        )
 
+                        binding.root.postDelayed({
 
-                        finish()
+                            startActivity(
+                                Intent(
+                                    this@LoginActivity,
+                                    DashboardActivity::class.java
+                                )
+                            )
 
+                            finish()
 
+                        }, 600)
 
-                    },600)
+                    } else {
 
-
-
-
-                }else{
-
+                        showNotification(
+                            body?.message ?: "Login Failed",
+                            isSuccess = false
+                        )
+                    }
+                } else {
 
                     showNotification(
-
-                        body?.message
-                            ?: "Invalid Login",
-
-                        false
-
+                        "Invalid Email or Password",
+                        isSuccess = false
                     )
-
-
                 }
-
-
-
             }
-
-
-
 
             override fun onFailure(
                 call: Call<LoginResponse>,
                 t: Throwable
-            ){
-
+            ) {
 
                 setLoading(false)
 
-
-
                 showNotification(
-
-                    t.message
-                        ?: "Network Error",
-
-                    false
-
+                    t.message ?: "Something went wrong. Please try again",
+                    isSuccess = false
                 )
-
-
             }
-
-
         })
-
-
     }
 
+    private fun setLoading(loading: Boolean) {
 
+        binding.btnLogin.isEnabled = !loading
+        binding.etEmail.isEnabled = !loading
+        binding.etPassword.isEnabled = !loading
+        binding.imgEye.isEnabled = !loading
 
-
-
-
-    private fun setLoading(
-        loading:Boolean
-    ){
-
-
-
-        binding.btnLogin.isEnabled =
-            !loading
-
-
-        binding.etEmail.isEnabled =
-            !loading
-
-
-        binding.etPassword.isEnabled =
-            !loading
-
-
-        binding.imgEye.isEnabled =
-            !loading
-
-
-
-
-        binding.btnLogin.text =
-
-            if(loading)
-                ""
-            else
-                "Login"
-
-
-
-
-        binding.progressLogin.visibility =
-
-            if(loading)
-                View.VISIBLE
-            else
-                View.GONE
-
-
+        binding.btnLogin.text = if (loading) "" else "Login"
+        binding.progressLogin.visibility = if (loading) View.VISIBLE else View.GONE
     }
 
+    private fun showNotification(message: String, isSuccess: Boolean) {
 
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        val snackbarView = snackbar.view
 
+        val colorRes = if (isSuccess) R.color.accent_green else R.color.accent_red
 
-
-
-
-    private fun showNotification(
-        message:String,
-        isSuccess:Boolean
-    ){
-
-
-        val snackbar =
-
-            Snackbar.make(
-
-                binding.root,
-
-                message,
-
-                Snackbar.LENGTH_LONG
-
-            )
-
-
-
-        snackbar.view.setBackgroundColor(
-
-
-            ContextCompat.getColor(
-
-                this,
-
-                if(isSuccess)
-
-                    R.color.accent_green
-
-                else
-
-                    R.color.accent_red
-
-            )
-
+        snackbarView.setBackgroundColor(
+            ContextCompat.getColor(this, colorRes)
         )
 
-
-
-
-        val textView =
-
-            snackbar.view.findViewById<TextView>(
-
-                com.google.android.material.R.id.snackbar_text
-
-            )
-
-
-
-
-        textView.setTextColor(
-
-            ContextCompat.getColor(
-
-                this,
-
-                R.color.white
-
-            )
-
+        val textView = snackbarView.findViewById<TextView>(
+            com.google.android.material.R.id.snackbar_text
         )
-
-
-
-        textView.gravity =
-            Gravity.CENTER
-
-
+        textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+        textView.gravity = Gravity.CENTER
 
         snackbar.show()
-
-
     }
-
-
-
 }

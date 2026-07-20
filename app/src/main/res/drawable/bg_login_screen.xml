@@ -1,123 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <!-- Main Rose White Gradient -->
+    <!-- Base gradient -->
     <item>
         <shape android:shape="rectangle">
-
             <gradient
                 android:type="linear"
-                android:angle="45"
-                android:startColor="#E91E63"
-                android:centerColor="#FF8FB1"
-                android:endColor="#FFF8FB" />
-
+                android:angle="135"
+                android:startColor="@color/gradient_start"
+                android:endColor="@color/gradient_end" />
         </shape>
     </item>
 
-
-    <!-- Top Left Soft White Glow -->
-    <item
-        android:width="280dp"
-        android:height="280dp"
-        android:gravity="top|start"
-        android:left="-130dp"
-        android:top="-100dp">
-
-        <shape android:shape="oval">
-
-            <gradient
-                android:type="radial"
-                android:gradientRadius="150dp"
-                android:startColor="#66FFFFFF"
-                android:endColor="#00FFFFFF" />
-
-        </shape>
-
-    </item>
-
-
-    <!-- Large Glass Ring Top Right -->
-    <item
-        android:width="300dp"
-        android:height="300dp"
-        android:gravity="top|end"
-        android:right="-120dp"
-        android:top="-70dp">
-
-        <shape android:shape="oval">
-
-            <solid android:color="@android:color/transparent"/>
-
-            <stroke
-                android:width="35dp"
-                android:color="#30FFFFFF"/>
-
-        </shape>
-
-    </item>
-
-
-    <!-- Floating Pink Bubble Bottom Left -->
-    <item
-        android:width="340dp"
-        android:height="340dp"
-        android:gravity="bottom|start"
-        android:left="-160dp"
-        android:bottom="-160dp">
-
-        <shape android:shape="oval">
-
-            <gradient
-                android:type="radial"
-                android:gradientRadius="170dp"
-                android:startColor="#55FF4081"
-                android:endColor="#00FF4081"/>
-
-        </shape>
-
-    </item>
-
-
-    <!-- Small Crystal Ring Right Center -->
-    <item
-        android:width="140dp"
-        android:height="140dp"
-        android:gravity="center_vertical|end"
-        android:right="35dp">
-
-        <shape android:shape="oval">
-
-            <solid android:color="@android:color/transparent"/>
-
-            <stroke
-    android:width="30dp"
-    android:color="#88FFFFFF"/>
-
-        </shape>
-
-    </item>
-
-
-    <!-- Bottom White Shine -->
+    <!-- Decorative ring, top-right -->
     <item
         android:width="260dp"
-        android:height="120dp"
-        android:gravity="bottom|center_horizontal"
-        android:bottom="-40dp">
-
+        android:height="260dp"
+        android:gravity="top|end"
+        android:right="-90dp"
+        android:top="-90dp">
         <shape android:shape="oval">
-
-            <gradient
-                android:type="radial"
-                android:gradientRadius="140dp"
-                android:startColor="#55FFFFFF"
-                android:endColor="#00FFFFFF"/>
-
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="30dp"
+                android:color="#14FFFFFF" />
         </shape>
-
     </item>
 
+    <!-- Decorative filled glow, bottom-left -->
+    <item
+        android:width="320dp"
+        android:height="320dp"
+        android:gravity="bottom|start"
+        android:bottom="-140dp"
+        android:left="-120dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="160dp"
+                android:startColor="#1AFFFFFF"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Small ring accent, mid-right -->
+    <item
+        android:width="120dp"
+        android:height="120dp"
+        android:gravity="center_vertical|end"
+        android:right="20dp">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="10dp"
+                android:color="#0FFFFFFF" />
+        </shape>
+    </item>
 
 </layer-list>
