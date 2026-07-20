@@ -88,22 +88,22 @@ interface ApiService {
     // endpoints above, which use "../config/db.php"). If your actual path
     // differs, just update these two @GET/@POST strings.
 
-    @GET("settings/company-profile-get.php")
+    @GET("company_profile/company-profile-get.php")
     fun getCompanyProfile(): Call<CompanyProfileGetResponse>
 
 
-    @POST("settings/company-profile-save.php")
+    @POST("company_profile/company-profile-save.php")
     fun saveCompanyProfile(
         @Body request: CompanyProfile
     ): Call<CompanyProfileSaveResponse>
 
 
-    @GET("settings/get-signatures.php")
+    @GET("signatures/get-signatures.php")
     fun getSignatures(): Call<SignaturesResponse>
 
 
     @Multipart
-    @POST("settings/add_signature.php")
+    @POST("signatures/add_signature.php")
     fun addSignature(
         @Part("name") name: RequestBody,
         @Part image: MultipartBody.Part
