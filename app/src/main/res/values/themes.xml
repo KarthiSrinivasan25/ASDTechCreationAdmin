@@ -14,4 +14,12 @@
         <item name="android:windowLightStatusBar">false</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="CardRoundedTop">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSizeTopLeft">0dp</item>
+    <item name="cornerSizeTopRight">45dp</item>
+    <item name="cornerSizeBottomLeft">0dp</item>
+    <item name="cornerSizeBottomRight">0dp</item>
+</style>
 </resources>
