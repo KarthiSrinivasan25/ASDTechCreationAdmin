@@ -1,11 +1,11 @@
 package com.ecommerce.asdtechcreationadmin.ui.login
 
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.Gravity
 import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -30,92 +30,162 @@ class LoginActivity : AppCompatActivity() {
     private var isVisible = false
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.hide()
 
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
 
-        // Ring blinking animation
-        startRingAnimation()
+
+        // Floating glow animation
+        startGlowAnimation()
 
 
-        // Password show/hide
+
+        // Password eye toggle
+
         binding.imgEye.setOnClickListener {
 
-            if (isVisible) {
+
+            if(isVisible){
+
 
                 binding.etPassword.inputType =
                     InputType.TYPE_CLASS_TEXT or
                             InputType.TYPE_TEXT_VARIATION_PASSWORD
 
+
                 binding.imgEye.setImageResource(
                     R.drawable.ic_eye
                 )
 
-            } else {
+
+            }else{
+
 
                 binding.etPassword.inputType =
                     InputType.TYPE_CLASS_TEXT or
                             InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
 
+
                 binding.imgEye.setImageResource(
                     R.drawable.ic_eye_off
                 )
+
+
             }
 
 
+
             binding.etPassword.setSelection(
-                binding.etPassword.text.length
+                binding.etPassword.length()
             )
 
+
             isVisible = !isVisible
+
         }
+
 
 
 
         binding.btnLogin.setOnClickListener {
+
             login()
+
         }
 
+
+    }
+
+
+
+
+    private fun startGlowAnimation(){
+
+
+        val animator1 =
+            ValueAnimator.ofFloat(
+                0.15f,
+                0.7f,
+                0.15f
+            )
+
+
+        animator1.duration = 3500
+
+        animator1.repeatCount =
+            ValueAnimator.INFINITE
+
+
+
+        animator1.addUpdateListener {
+
+
+            binding.glowOrb1.alpha =
+                it.animatedValue as Float
+
+
+        }
+
+
+
+        animator1.start()
+
+
+
+
+        val animator2 =
+            ValueAnimator.ofFloat(
+                0.2f,
+                0.6f,
+                0.2f
+            )
+
+
+        animator2.duration = 4500
+
+        animator2.repeatCount =
+            ValueAnimator.INFINITE
+
+
+
+        animator2.startDelay = 1000
+
+
+
+        animator2.addUpdateListener {
+
+
+            binding.glowOrb2.alpha =
+                it.animatedValue as Float
+
+
+        }
+
+
+
+        animator2.start()
+
     }
 
 
 
-    private fun startRingAnimation() {
-
-    val blinkAnimation = android.animation.ValueAnimator.ofFloat(
-        0.05f,
-        0.8f,
-        0.05f
-    )
-
-    blinkAnimation.duration = 2500
-    blinkAnimation.repeatCount = android.animation.ValueAnimator.INFINITE
-
-    blinkAnimation.addUpdateListener { animator ->
-
-        val alpha =
-            animator.animatedValue as Float
-
-        binding.imgRingGlow.alpha = alpha
-
-    }
-
-    blinkAnimation.start()
-}
 
 
 
-
-    private fun login() {
+    private fun login(){
 
 
         val email =
             binding.etEmail.text.toString().trim()
+
 
 
         val password =
@@ -123,22 +193,25 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        if (email.isEmpty()) {
+
+        if(email.isEmpty()){
 
             binding.etEmail.error =
                 "Enter Email"
 
             return
+
         }
 
 
 
-        if (password.isEmpty()) {
+        if(password.isEmpty()){
 
             binding.etPassword.error =
                 "Enter Password"
 
             return
+
         }
 
 
@@ -147,99 +220,112 @@ class LoginActivity : AppCompatActivity() {
 
 
 
+
         ApiClient.apiService.login(
+
             LoginRequest(
                 email,
                 password
             )
 
-        ).enqueue(object : Callback<LoginResponse> {
+
+        ).enqueue(object : Callback<LoginResponse>{
 
 
 
             override fun onResponse(
                 call: Call<LoginResponse>,
                 response: Response<LoginResponse>
-            ) {
+            ){
 
 
                 setLoading(false)
 
 
 
-                if (response.isSuccessful) {
-
-
-                    val data =
-                        response.body()
+                val body =
+                    response.body()
 
 
 
-                    if (data != null && data.status) {
+                if(response.isSuccessful &&
+                    body != null &&
+                    body.status){
 
 
 
-                        SessionManager(
-                            this@LoginActivity
-                        ).saveSession(
-
-                            data.token ?: "",
-
-                            data.admin?.name ?: "",
-
-                            data.admin?.email ?: ""
-
-                        )
+                    SessionManager(
+                        this@LoginActivity
+                    ).saveSession(
 
 
-
-                        showNotification(
-                            data.message ?: "Login Successful",
-                            true
-                        )
+                        body.token ?: "",
 
 
-
-                        binding.root.postDelayed({
-
-
-                            startActivity(
-                                Intent(
-                                    this@LoginActivity,
-                                    DashboardActivity::class.java
-                                )
-                            )
+                        body.admin?.name ?: "",
 
 
-                            finish()
+                        body.admin?.email ?: ""
 
+                    )
 
-                        },600)
-
-
-
-                    } else {
-
-
-                        showNotification(
-                            data?.message
-                                ?: "Login Failed",
-                            false
-                        )
-
-                    }
-
-
-
-                } else {
 
 
                     showNotification(
-                        "Invalid Email or Password",
-                        false
+
+                        body.message
+                            ?: "Login Successful",
+
+                        true
+
                     )
 
+
+
+
+                    binding.root.postDelayed({
+
+
+
+                        startActivity(
+
+                            Intent(
+
+                                this@LoginActivity,
+
+                                DashboardActivity::class.java
+
+                            )
+
+                        )
+
+
+
+                        finish()
+
+
+
+                    },600)
+
+
+
+
+                }else{
+
+
+                    showNotification(
+
+                        body?.message
+                            ?: "Invalid Login",
+
+                        false
+
+                    )
+
+
                 }
+
+
 
             }
 
@@ -249,24 +335,32 @@ class LoginActivity : AppCompatActivity() {
             override fun onFailure(
                 call: Call<LoginResponse>,
                 t: Throwable
-            ) {
+            ){
 
 
                 setLoading(false)
 
 
+
                 showNotification(
+
                     t.message
-                        ?: "Something went wrong",
+                        ?: "Network Error",
+
                     false
+
                 )
+
 
             }
 
 
         })
 
+
     }
+
+
 
 
 
@@ -274,6 +368,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setLoading(
         loading:Boolean
     ){
+
 
 
         binding.btnLogin.isEnabled =
@@ -293,7 +388,9 @@ class LoginActivity : AppCompatActivity() {
 
 
 
+
         binding.btnLogin.text =
+
             if(loading)
                 ""
             else
@@ -301,13 +398,19 @@ class LoginActivity : AppCompatActivity() {
 
 
 
+
         binding.progressLogin.visibility =
+
             if(loading)
                 View.VISIBLE
             else
                 View.GONE
 
+
     }
+
+
+
 
 
 
@@ -319,60 +422,76 @@ class LoginActivity : AppCompatActivity() {
 
 
         val snackbar =
+
             Snackbar.make(
+
                 binding.root,
+
                 message,
+
                 Snackbar.LENGTH_LONG
+
             )
 
 
 
-        val view =
-            snackbar.view
+        snackbar.view.setBackgroundColor(
 
 
-
-        val color =
-            if(isSuccess)
-                R.color.accent_green
-            else
-                R.color.accent_red
-
-
-
-        view.setBackgroundColor(
             ContextCompat.getColor(
+
                 this,
-                color
+
+                if(isSuccess)
+
+                    R.color.accent_green
+
+                else
+
+                    R.color.accent_red
+
             )
+
         )
 
 
 
-        val text =
-            view.findViewById<TextView>(
+
+        val textView =
+
+            snackbar.view.findViewById<TextView>(
+
                 com.google.android.material.R.id.snackbar_text
+
             )
 
 
 
-        text.setTextColor(
+
+        textView.setTextColor(
+
             ContextCompat.getColor(
+
                 this,
+
                 R.color.white
+
             )
+
         )
 
 
 
-        text.gravity =
+        textView.gravity =
             Gravity.CENTER
 
 
 
         snackbar.show()
 
+
     }
+
 
 
 }
