@@ -8,15 +8,14 @@
 
     <!-- GREEN HEADER -->
 
-    <FrameLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:background="#0A4B3A"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-         android:background="@drawable/bg_header">
+   <FrameLayout
+    android:id="@+id/headerLayout"
+    android:layout_width="0dp"
+    android:layout_height="300dp"
+    android:background="@drawable/bg_header"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:layout_width="match_parent"
