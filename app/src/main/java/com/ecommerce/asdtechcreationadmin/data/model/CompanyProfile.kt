@@ -1,0 +1,31 @@
+package com.ecommerce.asdtechcreationadmin.data.model
+
+data class CompanyProfile(
+    val id: Int? = null,
+    val company_name: String? = null,
+    val owner_name: String? = null,
+    val email: String? = null,
+    val phone: String? = null,
+    val address: String? = null,
+    val city: String? = null,
+    val state: String? = null,
+    val pincode: String? = null,
+    val gst_number: String? = null,
+    val pan_number: String? = null,
+    val website: String? = null,
+    val bank_name: String? = null,
+    val account_holder: String? = null,
+    val account_number: String? = null,
+    val ifsc_code: String? = null,
+    val upi_id: String? = null,
+    val invoice_prefix: String? = null,
+    val invoice_due_days: Int? = null,
+    val signature_1_id: Int? = null,
+    val signature_2_id: Int? = null,
+    val signature_1_name: String? = null,
+    val signature_1_image: String? = null,
+    val signature_1_image_url: String? = null,
+    val signature_2_name: String? = null,
+    val signature_2_image: String? = null,
+    val signature_2_image_url: String? = null
+)

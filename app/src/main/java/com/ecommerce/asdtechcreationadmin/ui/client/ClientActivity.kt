@@ -101,7 +101,13 @@ class ClientActivity : AppCompatActivity() {
             loadClients()
         }
 
-        BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_clients)
+        BottomNavHelper.setup(this, binding.bottomNavigation, R.id.nav_clients) {
+            binding.drawerLayout.openDrawer(androidx.core.view.GravityCompat.START)
+        }
+
+        com.ecommerce.asdtechcreationadmin.ui.common.NavDrawerHelper.setup(
+            this, binding.drawerLayout, binding.navDrawer, R.id.nav_clients
+        )
         
 
         setupSearch()

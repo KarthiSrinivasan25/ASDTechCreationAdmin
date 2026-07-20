@@ -1,12 +1,16 @@
 package com.ecommerce.asdtechcreationadmin.api
 
 import com.ecommerce.asdtechcreationadmin.data.model.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -77,5 +81,32 @@ interface ApiService {
         @Field("status") status: String,
         @Field("notes") notes: String
     ): Call<SimpleResponse>
+
+
+    // NOTE: assumed to live under an "settings/" subfolder based on the
+    // "../../config/db.php" include path (one level deeper than the other
+    // endpoints above, which use "../config/db.php"). If your actual path
+    // differs, just update these two @GET/@POST strings.
+
+    @GET("settings/company-profile-get.php")
+    fun getCompanyProfile(): Call<CompanyProfileGetResponse>
+
+
+    @POST("settings/company-profile-save.php")
+    fun saveCompanyProfile(
+        @Body request: CompanyProfile
+    ): Call<CompanyProfileSaveResponse>
+
+
+    @GET("settings/get-signatures.php")
+    fun getSignatures(): Call<SignaturesResponse>
+
+
+    @Multipart
+    @POST("settings/add_signature.php")
+    fun addSignature(
+        @Part("name") name: RequestBody,
+        @Part image: MultipartBody.Part
+    ): Call<AddSignatureResponse>
 
 }

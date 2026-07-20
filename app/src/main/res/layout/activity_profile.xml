@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen_background"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top bar -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_header_gradient"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="40dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/text_on_gradient" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="Company Profile"
+                android:textColor="@color/text_on_gradient"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Logo (overlaps header) -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-32dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/company_logo" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Company Details -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/bg_icon_circle_blue">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_briefcase"
+                                app:tint="@color/accent_blue" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Company Details"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- Company Name -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Company Name *"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etCompanyName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Company name"
+                            android:inputType="text"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- Owner Name -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Owner Name"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etOwnerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Owner name"
+                            android:inputType="textPersonName"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- Email -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Email"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Company email"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- Phone -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Phone"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Phone number"
+                            android:inputType="phone"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- Address -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Address"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <EditText
+                            android:id="@+id/etAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:gravity="top"
+                            android:hint="Street address"
+                            android:inputType="textMultiLine|textPostalAddress"
+                            android:minLines="2"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- City / State row -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="City"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="52dp"
+                                android:layout_marginTop="6dp"
+                                android:addStatesFromChildren="true"
+                                android:background="@drawable/bg_edittext"
+                                android:gravity="center_vertical"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp">
+
+                                <EditText
+                                    android:id="@+id/etCity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:hint="City"
+                                    android:inputType="text"
+                                    android:textColor="@color/text_primary"
+                                    android:textColorHint="@color/text_muted"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="State"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="52dp"
+                                android:layout_marginTop="6dp"
+                                android:addStatesFromChildren="true"
+                                android:background="@drawable/bg_edittext"
+                                android:gravity="center_vertical"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp">
+
+                                <EditText
+                                    android:id="@+id/etState"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:hint="State"
+                                    android:inputType="text"
+                                    android:textColor="@color/text_primary"
+                                    android:textColorHint="@color/text_muted"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Pincode -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Pincode"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etPincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Pincode"
+                            android:inputType="number"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- GST -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="GST Number"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etGstNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="GST number"
+                            android:inputType="textCapCharacters"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- PAN -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="PAN Number"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etPanNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="PAN number"
+                            android:inputType="textCapCharacters"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- Website -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Website"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etWebsite"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Website"
+                            android:inputType="textUri"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Bank Details -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/bg_icon_circle_green">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_bank" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Bank Details"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- Bank Name -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Bank Name"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etBankName"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Bank name"
+                            android:inputType="text"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- Account Holder -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Account Holder"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etAccountHolder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Account holder name"
+                            android:inputType="textPersonName"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- Account Number -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="Account Number"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etAccountNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="Account number"
+                            android:inputType="number"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- IFSC -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="IFSC Code"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etIfscCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="IFSC code"
+                            android:inputType="textCapCharacters"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- UPI -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:text="UPI ID"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="6dp"
+                        android:addStatesFromChildren="true"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp">
+
+                        <EditText
+                            android:id="@+id/etUpiId"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:hint="UPI ID"
+                            android:inputType="textNoSuggestions"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Invoice Settings -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/bg_icon_circle_purple">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_invoice"
+                                app:tint="@color/accent_purple" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="Invoice Settings"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- Prefix / Due days row -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Invoice Prefix"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="52dp"
+                                android:layout_marginTop="6dp"
+                                android:addStatesFromChildren="true"
+                                android:background="@drawable/bg_edittext"
+                                android:gravity="center_vertical"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp">
+
+                                <EditText
+                                    android:id="@+id/etInvoicePrefix"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:hint="INV"
+                                    android:inputType="textCapCharacters"
+                                    android:textColor="@color/text_primary"
+                                    android:textColorHint="@color/text_muted"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Due Days"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="52dp"
+                                android:layout_marginTop="6dp"
+                                android:addStatesFromChildren="true"
+                                android:background="@drawable/bg_edittext"
+                                android:gravity="center_vertical"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp">
+
+                                <EditText
+                                    android:id="@+id/etInvoiceDueDays"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:hint="15"
+                                    android:inputType="number"
+                                    android:textColor="@color/text_primary"
+                                    android:textColorHint="@color/text_muted"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Signatures -->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/bg_icon_circle_purple">
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_signature_purple" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="Signatures"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnManageSignatures"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Manage"
+                            android:textColor="@color/accent_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- Signature 1 -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Signature 1"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/rowSignature1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imgSignature1"
+                            android:layout_width="56dp"
+                            android:layout_height="38dp"
+                            android:background="@drawable/bg_signature_thumb"
+                            android:padding="4dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_image_placeholder" />
+
+                        <TextView
+                            android:id="@+id/txtSignature1Name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:text="No signature selected"
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select"
+                            android:textColor="@color/accent_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- Signature 2 -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Signature 2"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/rowSignature2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_edittext"
+                        android:gravity="center_vertical"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/imgSignature2"
+                            android:layout_width="56dp"
+                            android:layout_height="38dp"
+                            android:background="@drawable/bg_signature_thumb"
+                            android:padding="4dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_image_placeholder" />
+
+                        <TextView
+                            android:id="@+id/txtSignature2Name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:text="No signature selected"
+                            android:textColor="@color/text_muted"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select"
+                            android:textColor="@color/accent_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Save button -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSaveProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_button_gradient"
+                    android:backgroundTint="@null"
+                    android:elevation="0dp"
+                    android:text="Save Profile"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="16dp"
+                    app:rippleColor="#33FFFFFF" />
+
+                <ProgressBar
+                    android:id="@+id/progressProfile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

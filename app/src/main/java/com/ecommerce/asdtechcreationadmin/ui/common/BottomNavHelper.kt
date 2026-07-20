@@ -7,111 +7,62 @@ import com.ecommerce.asdtechcreationadmin.ui.client.ClientActivity
 import com.ecommerce.asdtechcreationadmin.ui.dashboard.DashboardActivity
 import com.ecommerce.asdtechcreationadmin.ui.invoice.InvoiceActivity
 import com.ecommerce.asdtechcreationadmin.ui.payment.PaymentActivity
-import com.ecommerce.asdtechcreationadmin.ui.settings.SettingsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+/**
+ * Shared bottom navigation wiring so every top-level screen
+ * (Dashboard, Clients, Invoice, Payments) behaves the same way.
+ *
+ * "Settings" is no longer its own screen — tapping it opens the
+ * navigation drawer (see NavDrawerHelper) instead of navigating away,
+ * so the bottom bar's checked state is left untouched for that tap.
+ *
+ * Dashboard is treated as the root of the stack, so switching tabs from
+ * any other screen finishes that screen first (keeps the back stack shallow
+ * and Back always lands you on Dashboard). Tapping the tab you're already on
+ * does nothing.
+ */
 object BottomNavHelper {
 
     fun setup(
         activity: AppCompatActivity,
         bottomNav: BottomNavigationView,
-        currentTabId: Int
+        currentTabId: Int,
+        onOpenDrawer: () -> Unit = {}
     ) {
 
         bottomNav.selectedItemId = currentTabId
 
-        // Initial selected color
-        setSelectedColor(activity, bottomNav, currentTabId)
-
-
         bottomNav.setOnItemSelectedListener { item ->
+
+            if (item.itemId == R.id.nav_settings) {
+                onOpenDrawer()
+                return@setOnItemSelectedListener false
+            }
 
             if (item.itemId == currentTabId) {
                 return@setOnItemSelectedListener true
             }
 
-
-            // Change selected icon color
-            setSelectedColor(
-                activity,
-                bottomNav,
-                item.itemId
-            )
-
-
             val targetClass: Class<*>? = when (item.itemId) {
-
-                R.id.nav_dashboard ->
-                    DashboardActivity::class.java
-
-                R.id.nav_clients ->
-                    ClientActivity::class.java
-
-                R.id.nav_invoice ->
-                    InvoiceActivity::class.java
-
-                R.id.nav_payment ->
-                    PaymentActivity::class.java
-
-                R.id.nav_settings ->
-                    SettingsActivity::class.java
-
+                R.id.nav_dashboard -> DashboardActivity::class.java
+                R.id.nav_clients -> ClientActivity::class.java
+                R.id.nav_invoice -> InvoiceActivity::class.java
+                R.id.nav_payment -> PaymentActivity::class.java
                 else -> null
             }
 
-
             if (targetClass != null) {
 
-                activity.startActivity(
-                    Intent(activity, targetClass)
-                )
-
+                activity.startActivity(Intent(activity, targetClass))
                 activity.overridePendingTransition(0, 0)
-
 
                 if (currentTabId != R.id.nav_dashboard) {
                     activity.finish()
                 }
             }
 
-
             true
         }
-    }
-
-
-    private fun setSelectedColor(
-        activity: AppCompatActivity,
-        bottomNav: BottomNavigationView,
-        id: Int
-    ) {
-
-        val color = when(id) {
-
-            R.id.nav_dashboard ->
-                R.color.bottom_dashboard_color
-
-            R.id.nav_clients ->
-                R.color.bottom_clients_color
-
-            R.id.nav_invoice ->
-                R.color.bottom_invoice_color
-
-            R.id.nav_payment ->
-                R.color.bottom_payment_color
-
-            R.id.nav_settings ->
-                R.color.bottom_settings_color
-
-            else ->
-                R.color.bottom_dashboard_color
-        }
-
-
-        bottomNav.itemIconTintList =
-            activity.getColorStateList(color)
-
-        bottomNav.itemTextColor =
-            activity.getColorStateList(color)
     }
 }
