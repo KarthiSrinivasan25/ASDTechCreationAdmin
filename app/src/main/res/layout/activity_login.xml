@@ -1,236 +1,460 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_login_screen"
-    android:fillViewport="true"
-    android:fitsSystemWindows="true">
 
-    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- Background -->
+    <androidx.core.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:paddingStart="26dp"
-        android:paddingEnd="26dp"
-        android:paddingTop="40dp"
-        android:paddingBottom="40dp">
 
-        <!-- Logo badge -->
+        android:background="@drawable/bg_login_screen"
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="84dp"
-            android:layout_height="84dp"
-            android:layout_gravity="center_horizontal"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="14dp">
+        android:fillViewport="true"
+        android:fitsSystemWindows="true">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="AT"
-                android:textColor="@color/gradient_end"
-                android:textSize="26sp"
-                android:textStyle="bold" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="18dp"
-            android:text="ASD TechCreation"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp"
-            android:text="Admin Panel"
-            android:textColor="#D6DEFF"
-            android:textSize="13sp" />
-
-        <!-- Glass card -->
 
         <LinearLayout
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="34dp"
-            android:background="@drawable/bg_glass_card"
+            android:layout_height="match_parent"
+
+            android:gravity="center_vertical"
+
             android:orientation="vertical"
-            android:padding="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Welcome Back"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+            android:paddingStart="26dp"
+            android:paddingEnd="26dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="22dp"
-                android:text="Sign in to manage your business"
-                android:textColor="#D6DEFF"
-                android:textSize="13sp" />
 
-            <!-- Email -->
+            <!-- Logo -->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:addStatesFromChildren="true"
-                android:background="@drawable/bg_glass_input"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+            <com.google.android.material.card.MaterialCardView
 
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_email"
-                    app:tint="@null" />
+                android:layout_width="84dp"
+                android:layout_height="84dp"
 
-                <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:background="@android:color/transparent"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/white"
-                    android:textColorHint="#A6B3E8"
-                    android:textSize="14sp" />
+                android:layout_gravity="center_horizontal"
 
-            </LinearLayout>
+                app:cardBackgroundColor="@color/white"
 
-            <!-- Password -->
+                app:cardCornerRadius="24dp"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="14dp"
-                android:addStatesFromChildren="true"
-                android:background="@drawable/bg_glass_input"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                app:cardElevation="14dp">
 
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_lock"
-                    app:tint="@null" />
-
-                <EditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:background="@android:color/transparent"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColor="@color/white"
-                    android:textColorHint="#A6B3E8"
-                    android:textSize="14sp" />
-
-               <ImageView
-    android:id="@+id/imgEye"
-    android:layout_width="18dp"
-    android:layout_height="18dp"
-    android:src="@drawable/ic_eye"
-    app:tint="@color/white" />
-            </LinearLayout>
-
-            <!-- Remember / Forgot -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:gravity="center_vertical">
-
-                <CheckBox
-                    android:id="@+id/cbRemember"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/white"
-                    android:text="Remember Me"
-                    android:textColor="#D6DEFF"
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/txtForgotPassword"
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+
+                    android:gravity="center"
+
+                    android:text="AT"
+
+                    android:textColor="@color/gradient_end"
+
+                    android:textSize="26sp"
+
+                    android:textStyle="bold"/>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_horizontal"
+
+                android:layout_marginTop="18dp"
+
+                android:text="ASD TechCreation"
+
+                android:textColor="@color/white"
+
+                android:textSize="24sp"
+
+                android:textStyle="bold"/>
+
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_horizontal"
+
+                android:layout_marginTop="4dp"
+
+                android:text="Admin Panel"
+
+                android:textColor="#D6DEFF"
+
+                android:textSize="13sp"/>
+
+
+
+
+            <!-- Glass Card -->
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="34dp"
+
+                android:background="@drawable/bg_glass_card"
+
+                android:orientation="vertical"
+
+                android:padding="24dp">
+
+
+
+                <TextView
+
                     android:layout_width="wrap_content"
+
                     android:layout_height="wrap_content"
-                    android:text="Forgot Password?"
+
+                    android:text="Welcome Back"
+
                     android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+
+                    android:textSize="22sp"
+
+                    android:textStyle="bold"/>
+
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="4dp"
+
+                    android:layout_marginBottom="22dp"
+
+                    android:text="Sign in to manage your business"
+
+                    android:textColor="#D6DEFF"
+
+                    android:textSize="13sp"/>
+
+
+
+
+                <!-- Email -->
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="54dp"
+
+                    android:background="@drawable/bg_glass_input"
+
+                    android:gravity="center_vertical"
+
+                    android:paddingStart="16dp"
+
+                    android:paddingEnd="16dp">
+
+
+                    <ImageView
+
+                        android:layout_width="18dp"
+
+                        android:layout_height="18dp"
+
+                        android:src="@drawable/ic_email"/>
+
+
+
+                    <EditText
+
+                        android:id="@+id/etEmail"
+
+                        android:layout_width="0dp"
+
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="1"
+
+                        android:layout_marginStart="12dp"
+
+                        android:background="@android:color/transparent"
+
+                        android:hint="Email"
+
+                        android:inputType="textEmailAddress"
+
+                        android:textColor="@color/white"
+
+                        android:textColorHint="#A6B3E8"
+
+                        android:textSize="14sp"/>
+
+
+                </LinearLayout>
+
+
+
+
+                <!-- Password -->
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="54dp"
+
+                    android:layout_marginTop="14dp"
+
+                    android:background="@drawable/bg_glass_input"
+
+                    android:gravity="center_vertical"
+
+                    android:paddingStart="16dp"
+
+                    android:paddingEnd="16dp">
+
+
+
+                    <ImageView
+
+                        android:layout_width="18dp"
+
+                        android:layout_height="18dp"
+
+                        android:src="@drawable/ic_lock"/>
+
+
+
+                    <EditText
+
+                        android:id="@+id/etPassword"
+
+                        android:layout_width="0dp"
+
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="1"
+
+                        android:layout_marginStart="12dp"
+
+                        android:background="@android:color/transparent"
+
+                        android:hint="Password"
+
+                        android:inputType="textPassword"
+
+                        android:textColor="@color/white"
+
+                        android:textColorHint="#A6B3E8"
+
+                        android:textSize="14sp"/>
+
+
+
+                    <ImageView
+
+                        android:id="@+id/imgEye"
+
+                        android:layout_width="18dp"
+
+                        android:layout_height="18dp"
+
+                        android:src="@drawable/ic_eye"
+
+                        app:tint="@color/white"/>
+
+
+                </LinearLayout>
+
+
+
+
+                <!-- Remember -->
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="14dp"
+
+                    android:gravity="center_vertical">
+
+
+
+                    <CheckBox
+
+                        android:id="@+id/cbRemember"
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="Remember Me"
+
+                        android:textColor="#D6DEFF"
+
+                        android:textSize="12sp"/>
+
+
+
+                    <View
+
+                        android:layout_width="0dp"
+
+                        android:layout_height="0dp"
+
+                        android:layout_weight="1"/>
+
+
+
+                    <TextView
+
+                        android:id="@+id/txtForgotPassword"
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+
+                        android:text="Forgot Password?"
+
+                        android:textColor="@color/white"
+
+                        android:textSize="12sp"
+
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
+
+
+
+                <!-- Login Button -->
+
+                <FrameLayout
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="22dp">
+
+
+
+                    <com.google.android.material.button.MaterialButton
+
+                        android:id="@+id/btnLogin"
+
+                        android:layout_width="match_parent"
+
+                        android:layout_height="54dp"
+
+                        android:backgroundTint="@color/white"
+
+                        android:text="Login"
+
+                        android:textColor="@color/gradient_end"
+
+                        android:textSize="16sp"
+
+                        android:textStyle="bold"
+
+                        app:cornerRadius="16dp"/>
+
+
+
+                    <ProgressBar
+
+                        android:id="@+id/progressLogin"
+
+                        android:layout_width="22dp"
+
+                        android:layout_height="22dp"
+
+                        android:layout_gravity="center"
+
+                        android:visibility="gone"/>
+
+
+                </FrameLayout>
+
 
             </LinearLayout>
 
-            <!-- Login button -->
 
-            <FrameLayout
-                android:layout_width="match_parent"
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:backgroundTint="@color/white"
-                    android:elevation="0dp"
-                    android:text="Login"
-                    android:textAllCaps="false"
-                    android:textColor="@color/gradient_end"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="16dp"
-                    app:rippleColor="#33FFFFFF" />
+                android:layout_gravity="center_horizontal"
 
-                <ProgressBar
-                    android:id="@+id/progressLogin"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="center"
-                    android:indeterminateTint="@color/gradient_end"
-                    android:visibility="gone" />
+                android:layout_marginTop="26dp"
 
-            </FrameLayout>
+                android:text="Need help? Contact support"
+
+                android:textColor="#B3BEEF"
+
+                android:textSize="12sp"/>
+
+
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="26dp"
-            android:text="Need help? Contact support"
-            android:textColor="#B3BEEF"
-            android:textSize="12sp" />
 
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.core.widget.NestedScrollView>
+
+
+
+    <!-- Animated Ring -->
+
+    <ImageView
+
+        android:id="@+id/imgRingGlow"
+
+        android:layout_width="300dp"
+
+        android:layout_height="300dp"
+
+        android:layout_gravity="top|end"
+
+        android:layout_marginTop="-70dp"
+
+        android:layout_marginEnd="-120dp"
+
+        android:src="@drawable/bg_ring"
+
+        android:alpha="0.5"/>
+
+
+</FrameLayout>

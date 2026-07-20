@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!-- Blink -->
+    <alpha
+        android:fromAlpha="0.25"
+        android:toAlpha="0.85"
+        android:duration="1800"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"/>
+
+
+    <!-- Soft breathing scale -->
+    <scale
+        android:fromXScale="0.95"
+        android:fromYScale="0.95"
+        android:toXScale="1.08"
+        android:toYScale="1.08"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:duration="2200"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"/>
+
+
+</set>
