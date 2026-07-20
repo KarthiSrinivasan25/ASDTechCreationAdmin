@@ -147,31 +147,49 @@
             <!-- Password -->
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                app:boxBackgroundMode="filled"
-                app:boxBackgroundColor="#22FFFFFF"
-                app:boxCornerRadiusTopStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
-                app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusBottomEnd="16dp"
-                app:endIconMode="password_toggle"
-                app:endIconTint="@color/white">
+           <!-- Password -->
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="54dp"
+    android:layout_marginTop="14dp"
+    android:background="@drawable/bg_glass_input"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColor="@color/white"
-                    android:textColorHint="#A6B3E8"/>
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/ic_lock"
+        app:tint="#D6DEFF" />
 
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:background="@android:color/transparent"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="#A6B3E8"
+        android:textSize="14sp" />
+
+
+    <ImageView
+        android:id="@+id/imgEye"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:padding="1dp"
+        android:src="@drawable/ic_eye"
+        app:tint="@color/white" />
+
+
+</LinearLayout>
 
 
 
