@@ -79,7 +79,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/ic_dashboard_drawer" />
+                android:src="@drawable/ic_dashboard" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/ic_clients_drawer" />
+                android:src="@drawable/ic_clients" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/ic_invoice_drawer" />
+                android:src="@drawable/ic_invoice" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/ic_payment_drawer" />
+                android:src="@drawable/ic_payment" />
 
             <TextView
                 android:layout_width="wrap_content"
