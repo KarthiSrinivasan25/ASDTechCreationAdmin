@@ -87,22 +87,26 @@ class LoginActivity : AppCompatActivity() {
 
     private fun startRingAnimation() {
 
-        try {
+    val blinkAnimation = android.animation.ValueAnimator.ofFloat(
+        0.05f,
+        0.8f,
+        0.05f
+    )
 
-            val animation = AnimationUtils.loadAnimation(
-                this,
-                R.anim.ring_blink
-            )
+    blinkAnimation.duration = 2500
+    blinkAnimation.repeatCount = android.animation.ValueAnimator.INFINITE
 
-            binding.imgRingGlow.startAnimation(animation)
+    blinkAnimation.addUpdateListener { animator ->
 
+        val alpha =
+            animator.animatedValue as Float
 
-        } catch (e: Exception) {
-
-            // If ring view not available, ignore
-        }
+        binding.imgRingGlow.alpha = alpha
 
     }
+
+    blinkAnimation.start()
+}
 
 
 

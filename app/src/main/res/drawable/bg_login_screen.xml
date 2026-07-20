@@ -92,8 +92,8 @@
             <solid android:color="@android:color/transparent"/>
 
             <stroke
-                android:width="12dp"
-                android:color="#40FFFFFF"/>
+    android:width="30dp"
+    android:color="#88FFFFFF"/>
 
         </shape>
 
