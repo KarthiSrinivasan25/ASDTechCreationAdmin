@@ -8,8 +8,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/white"
-    
-    android:fitsSystemWindows="true">
+    >
 
 
     <LinearLayout
@@ -30,7 +29,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="300dp"
         android:layout_gravity="bottom"
         android:src="@drawable/login"
         android:scaleType="centerCrop"/>
@@ -40,7 +39,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="300dp"
         android:layout_gravity="bottom"
         android:background="#9900A86B"/>
 
@@ -85,20 +84,22 @@
 
 
         <TextView
+    android:id="@+id/txtCompanyName"
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
-            android:layout_marginTop="16dp"
+    android:layout_marginTop="16dp"
 
-            android:text="ASD TechCreation"
+    android:text="ASD TechCreation"
 
-            android:textColor="@color/white"
+    android:textColor="@color/white"
 
-            android:textSize="25sp"
+    android:textSize="25sp"
 
-            android:textStyle="bold"/>
+    android:textStyle="bold"
 
+    android:letterSpacing="0.04"/>
 
 
         <TextView
