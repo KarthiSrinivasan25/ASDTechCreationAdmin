@@ -7,7 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/white">
+    android:background="@color/white"
+    
+    android:fitsSystemWindows="true">
 
 
     <LinearLayout
@@ -18,68 +20,104 @@
 
         <!-- HEADER -->
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:background="@drawable/bg_header">
+     <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:background="#00A86B">
 
 
-            <View
+    <!-- Header Image only below status bar -->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_gravity="bottom"
+        android:src="@drawable/header_image"
+        android:scaleType="centerCrop"/>
+
+
+    <!-- Image Green Overlay -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_gravity="bottom"
+        android:background="#9900A86B"/>
+
+
+
+    <!-- Logo + Text -->
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"
+
+        android:gravity="center"
+
+        android:orientation="vertical">
+
+
+        <com.google.android.material.card.MaterialCardView
+
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+
+            app:cardCornerRadius="28dp"
+            app:cardElevation="10dp"
+            app:cardBackgroundColor="@color/white">
+
+
+            <ImageView
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#9900A86B"/>
+
+                android:padding="15dp"
+
+                android:src="@drawable/company_logo"/>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    app:cardCornerRadius="28dp"
-                    app:cardElevation="10dp"
-                    app:cardBackgroundColor="@color/white">
-
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="15dp"
-                        android:src="@drawable/company_logo"
-                        android:scaleType="fitCenter"/>
-
-
-                </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="ASD TechCreation"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    android:textStyle="bold"/>
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="16dp"
+
+            android:text="ASD TechCreation"
+
+            android:textColor="@color/white"
+
+            android:textSize="25sp"
+
+            android:textStyle="bold"/>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Admin Panel"
-                    android:textColor="#DDFFFFFF"
-                    android:textSize="14sp"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Admin Panel"
+
+            android:textColor="#DDFFFFFF"
+
+            android:textSize="14sp"/>
 
 
-            </LinearLayout>
+    </LinearLayout>
 
 
-        </FrameLayout>
+</FrameLayout>
 
 
 
