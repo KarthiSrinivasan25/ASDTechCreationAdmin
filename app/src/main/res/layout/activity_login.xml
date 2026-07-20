@@ -164,7 +164,7 @@
 
                 android:text="Sign in to manage your business"
 
-                android:textColor="#777777"
+               android:textColor="#666666"
                 android:textSize="13sp"/>
 
 
@@ -192,23 +192,26 @@
 
 
                 <EditText
+    android:id="@+id/etEmail"
 
-                    android:id="@+id/etEmail"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
 
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+    android:layout_weight="1"
 
-                    android:layout_weight="1"
+    android:layout_marginStart="12dp"
 
-                    android:layout_marginStart="12dp"
+    android:background="@android:color/transparent"
 
-                    android:background="@android:color/transparent"
+    android:hint="Email"
 
-                    android:hint="Email"
+    android:textColor="#222222"
 
-                    android:textSize="14sp"
+    android:textColorHint="#888888"
 
-                    android:inputType="textEmailAddress"/>
+    android:textSize="14sp"
+
+    android:inputType="textEmailAddress"/>
 
 
             </LinearLayout>
@@ -245,23 +248,26 @@
 
 
                 <EditText
+    android:id="@+id/etPassword"
 
-                    android:id="@+id/etPassword"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
 
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+    android:layout_weight="1"
 
-                    android:layout_weight="1"
+    android:layout_marginStart="12dp"
 
-                    android:layout_marginStart="12dp"
+    android:background="@android:color/transparent"
 
-                    android:background="@android:color/transparent"
+    android:hint="Password"
 
-                    android:hint="Password"
+    android:textColor="#222222"
 
-                    android:inputType="textPassword"
+    android:textColorHint="#888888"
 
-                    android:textSize="14sp"/>
+    android:inputType="textPassword"
+
+    android:textSize="14sp"/>
 
 
 
@@ -298,16 +304,18 @@
 
 
                 <CheckBox
+    android:id="@+id/cbRemember"
 
-                    android:id="@+id/cbRemember"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
-                    android:layout_width="wrap_content"
+    android:text="Remember Me"
 
-                    android:layout_height="wrap_content"
+    android:textColor="#555555"
 
-                    android:text="Remember Me"
+    android:buttonTint="#00A86B"
 
-                    android:textSize="12sp"/>
+    android:textSize="12sp"/>
 
 
 
@@ -402,21 +410,112 @@
 
 
 
-        <TextView
+       <LinearLayout
 
-            android:layout_width="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
 
-            android:layout_height="wrap_content"
+    android:layout_gravity="center"
 
-            android:layout_gravity="center"
+    android:layout_marginTop="25dp"
 
-            android:layout_marginTop="25dp"
+    android:gravity="center"
 
-            android:text="Need help? Contact support"
+    android:orientation="vertical">
 
-            android:textColor="#888888"
 
-            android:textSize="12sp"/>
+    
+
+
+
+    <LinearLayout
+
+        android:id="@+id/socialIcons"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="14dp"
+
+        android:gravity="center">
+
+
+        <ImageView
+
+            android:id="@+id/iconWebsite"
+
+            android:layout_width="42dp"
+
+            android:layout_height="42dp"
+
+            android:layout_margin="6dp"
+
+            android:padding="10dp"
+
+         
+
+            android:src="@drawable/ic_web"/>
+
+
+
+        <ImageView
+
+            android:id="@+id/iconWhatsapp"
+
+            android:layout_width="42dp"
+
+            android:layout_height="42dp"
+
+            android:layout_margin="6dp"
+
+            android:padding="10dp"
+
+          
+
+            android:src="@drawable/ic_seo"/>
+
+
+
+        <ImageView
+
+            android:id="@+id/iconEmail"
+
+            android:layout_width="42dp"
+
+            android:layout_height="42dp"
+
+            android:layout_margin="6dp"
+
+            android:padding="10dp"
+
+         
+
+            android:src="@drawable/ic_ecommerce"/>
+
+
+
+        <ImageView
+
+            android:id="@+id/iconCall"
+
+            android:layout_width="42dp"
+
+            android:layout_height="42dp"
+
+            android:layout_margin="6dp"
+
+            android:padding="10dp"
+
+        
+
+            android:src="@drawable/ic_android"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
 
 
 

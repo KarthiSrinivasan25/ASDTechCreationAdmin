@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.view.animation.AnimationUtils
 
 
 class LoginActivity : AppCompatActivity() {
@@ -44,6 +45,34 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        val icons = arrayOf(
+    binding.iconWebsite,
+    binding.iconWhatsapp,
+    binding.iconEmail,
+    binding.iconCall
+)
+
+
+icons.forEachIndexed { index, imageView ->
+
+    imageView.alpha = 0f
+
+    imageView.translationY = 40f
+
+
+    imageView.animate()
+
+        .alpha(1f)
+
+        .translationY(0f)
+
+        .setDuration(400)
+
+        .setStartDelay(index * 150L)
+
+        .start()
+}
 
 
 
