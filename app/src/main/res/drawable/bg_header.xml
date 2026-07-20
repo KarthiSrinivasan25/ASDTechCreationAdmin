@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <corners
-        android:bottomLeftRadius="70dp"/>
 
-</shape>
+    <!-- Header Image -->
+
+    <item>
+
+        <bitmap
+            android:src="@drawable/login"
+            android:gravity="fill"/>
+
+    </item>
+
+
+
+    <!-- Green Overlay -->
+
+    <item>
+
+        <shape>
+
+            <solid
+                android:color="#9900A86B"/>
+
+
+            <corners
+
+                android:bottomLeftRadius="70dp"/>
+
+
+        </shape>
+
+    </item>
+
+
+</layer-list>
