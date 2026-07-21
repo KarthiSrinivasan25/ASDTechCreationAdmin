@@ -109,4 +109,21 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): Call<AddSignatureResponse>
 
+
+    @GET("payments/get_payments.php")
+    fun getPayments(): Call<PaymentsResponse>
+
+
+    @FormUrlEncoded
+    @POST("payments/save_payment.php")
+    fun savePayment(
+        @Field("client_id") clientId: Int,
+        @Field("invoice_id") invoiceId: Int,
+        @Field("payment_date") paymentDate: String,
+        @Field("amount_paid") amountPaid: String,
+        @Field("payment_method") paymentMethod: String,
+        @Field("transaction_id") transactionId: String,
+        @Field("notes") notes: String
+    ): Call<SavePaymentResponse>
+
 }
