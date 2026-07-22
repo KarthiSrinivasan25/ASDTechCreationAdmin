@@ -50,6 +50,14 @@ class InvoiceActivity : AppCompatActivity() {
         }
     }
 
+    private val detailsLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            loadInvoices()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -64,7 +72,12 @@ class InvoiceActivity : AppCompatActivity() {
         )
 
         binding.rvInvoices.layoutManager = LinearLayoutManager(this)
-        adapter = InvoiceListAdapter(emptyList())
+        adapter = InvoiceListAdapter(emptyList()) { invoice ->
+            detailsLauncher.launch(
+                Intent(this, InvoiceDetailsActivity::class.java)
+                    .putExtra(InvoiceDetailsActivity.EXTRA_INVOICE_ID, invoice.id)
+            )
+        }
         binding.rvInvoices.adapter = adapter
 
         binding.btnBack.setOnClickListener { finish() }

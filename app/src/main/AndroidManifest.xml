@@ -17,12 +17,24 @@
         <activity
             android:name=".ui.dashboard.DashboardActivity"/>
 
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity android:name=".ui.client.ClientActivity"/>
         <activity android:name=".ui.client.AddClientActivity"/>
         <activity android:name=".ui.client.ClientDetailsActivity"/>
         <activity android:name=".ui.client.EditClientActivity"/>
         <activity android:name=".ui.invoice.InvoiceActivity"/>
         <activity android:name=".ui.invoice.AddInvoiceActivity"/>
+        <activity android:name=".ui.invoice.InvoiceDetailsActivity"/>
+        <activity android:name=".ui.invoice.EditInvoiceActivity"/>
         <activity android:name=".ui.payment.PaymentActivity"/>
         <activity android:name=".ui.payment.AddPaymentActivity"/>
         <activity android:name=".ui.profile.ProfileActivity"/>

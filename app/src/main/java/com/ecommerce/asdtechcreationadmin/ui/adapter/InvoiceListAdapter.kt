@@ -11,7 +11,8 @@ import java.text.NumberFormat
 import java.util.Locale
 
 class InvoiceListAdapter(
-    private var invoices: List<InvoiceListItem>
+    private var invoices: List<InvoiceListItem>,
+    private val onClick: (InvoiceListItem) -> Unit
 ) : RecyclerView.Adapter<InvoiceListAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemInvoiceBinding) :
@@ -77,6 +78,8 @@ class InvoiceListAdapter(
 
         holder.binding.txtBalanceAmount.visibility =
             if (invoice.balance_amount > 0) android.view.View.VISIBLE else android.view.View.GONE
+
+        holder.binding.root.setOnClickListener { onClick(invoice) }
     }
 
     fun submitList(newList: List<InvoiceListItem>) {
