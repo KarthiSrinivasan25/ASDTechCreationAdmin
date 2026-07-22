@@ -126,4 +126,39 @@ interface ApiService {
         @Field("notes") notes: String
     ): Call<SavePaymentResponse>
 
+
+    // NOTE: assumed to live under an "invoices/" subfolder, matching the
+    // per-feature subfolder convention used elsewhere (payments/, settings/).
+
+    @GET("invoices/get_invoices.php")
+    fun getInvoices(): Call<InvoicesResponse>
+
+
+    @GET("invoices/get_invoice_next.php")
+    fun getNextInvoiceNumber(): Call<NextInvoiceNumberResponse>
+
+
+    @FormUrlEncoded
+    @POST("invoices/save_invoice.php")
+    fun saveInvoice(
+        @Field("client_id") clientId: Int,
+        @Field("invoice_date") invoiceDate: String,
+        @Field("due_date") dueDate: String,
+        @Field("subtotal") subtotal: String,
+        @Field("gst_percent") gstPercent: String,
+        @Field("gst_amount") gstAmount: String,
+        @Field("discount") discount: String,
+        @Field("total_amount") totalAmount: String,
+        @Field("paid_amount") paidAmount: String,
+        @Field("balance_amount") balanceAmount: String,
+        @Field("status") status: String,
+        @Field("notes") notes: String,
+        @Field("signatory") signatory: String,
+        @Field("item_name[]") itemNames: List<String>,
+        @Field("description[]") descriptions: List<String>,
+        @Field("quantity[]") quantities: List<String>,
+        @Field("unit_price[]") unitPrices: List<String>,
+        @Field("total[]") totals: List<String>
+    ): Call<SaveInvoiceResponse>
+
 }

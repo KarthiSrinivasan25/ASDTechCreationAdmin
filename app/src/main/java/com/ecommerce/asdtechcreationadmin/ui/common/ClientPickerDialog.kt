@@ -1,4 +1,4 @@
-package com.ecommerce.asdtechcreationadmin.ui.payment
+package com.ecommerce.asdtechcreationadmin.ui.common
 
 import android.content.Context
 import android.view.View
