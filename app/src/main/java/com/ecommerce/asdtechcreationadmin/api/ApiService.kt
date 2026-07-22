@@ -130,16 +130,16 @@ interface ApiService {
     // NOTE: assumed to live under an "invoices/" subfolder, matching the
     // per-feature subfolder convention used elsewhere (payments/, settings/).
 
-    @GET("invoices/get_invoices.php")
+    @GET("invoice/get_invoices.php")
     fun getInvoices(): Call<InvoicesResponse>
 
 
-    @GET("invoices/get_invoice_next.php")
+    @GET("invoice/get_invoice_next.php")
     fun getNextInvoiceNumber(): Call<NextInvoiceNumberResponse>
 
 
     @FormUrlEncoded
-    @POST("invoices/save_invoice.php")
+    @POST("invoice/save_invoice.php")
     fun saveInvoice(
         @Field("client_id") clientId: Int,
         @Field("invoice_date") invoiceDate: String,
