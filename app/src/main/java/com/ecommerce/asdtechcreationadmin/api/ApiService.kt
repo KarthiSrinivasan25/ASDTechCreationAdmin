@@ -217,7 +217,7 @@ interface ApiService {
     ): Call<SimpleResponse>
 
 
-    @GET("payments/get_client_invoice.php")
+    @GET("payments/get_client_invoices.php")
     fun getClientInvoices(
         @Query("client_id") clientId: Int
     ): Call<ClientInvoiceOptionsResponse>
