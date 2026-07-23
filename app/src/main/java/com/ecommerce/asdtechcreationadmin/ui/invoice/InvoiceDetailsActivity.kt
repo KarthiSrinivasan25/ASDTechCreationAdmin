@@ -73,14 +73,14 @@ class InvoiceDetailsActivity : AppCompatActivity() {
 
         binding.btnViewPdf.setOnClickListener {
             val invoice = currentInvoice ?: return@setOnClickListener
-            PdfHelper.view(this, invoiceId, invoice.invoice_number, binding.root) { loading ->
+            PdfHelper.viewInvoice(this, invoiceId, invoice.invoice_number, binding.root) { loading ->
                 binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
             }
         }
 
         binding.btnDownloadPdf.setOnClickListener {
             val invoice = currentInvoice ?: return@setOnClickListener
-            PdfHelper.downloadToDevice(this, invoiceId, invoice.invoice_number, binding.root) { loading ->
+            PdfHelper.downloadInvoiceToDevice(this, invoiceId, invoice.invoice_number, binding.root) { loading ->
                 binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
             }
         }

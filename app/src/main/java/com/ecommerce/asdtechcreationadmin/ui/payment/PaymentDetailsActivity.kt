@@ -11,9 +11,11 @@ import androidx.core.content.ContextCompat
 import com.ecommerce.asdtechcreationadmin.R
 import com.ecommerce.asdtechcreationadmin.api.ApiClient
 import com.ecommerce.asdtechcreationadmin.data.model.GetPaymentResponse
+import com.ecommerce.asdtechcreationadmin.data.model.InvoiceIdRequest
 import com.ecommerce.asdtechcreationadmin.data.model.PaymentDetail
 import com.ecommerce.asdtechcreationadmin.data.model.SimpleResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityPaymentDetailsBinding
+import com.ecommerce.asdtechcreationadmin.ui.common.PdfHelper
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,6 +67,24 @@ class PaymentDetailsActivity : AppCompatActivity() {
         }
 
         binding.btnDelete.setOnClickListener { confirmDelete() }
+
+        binding.btnViewPdf.setOnClickListener {
+            val payment = currentPayment ?: return@setOnClickListener
+            PdfHelper.viewReceipt(this, paymentId, payment.receipt_number, binding.root) { loading ->
+                binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
+            }
+        }
+
+        binding.btnDownloadPdf.setOnClickListener {
+            val payment = currentPayment ?: return@setOnClickListener
+            PdfHelper.downloadReceiptToDevice(this, paymentId, payment.receipt_number, binding.root) { loading ->
+                binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
+            }
+        }
+
+        binding.btnEmailPdf.setOnClickListener {
+            sendReceiptEmail()
+        }
 
         loadPayment()
     }
@@ -163,6 +183,80 @@ class PaymentDetailsActivity : AppCompatActivity() {
             binding.txtNotesLabel.visibility = View.GONE
             binding.txtNotes.visibility = View.GONE
         }
+    }
+
+    private fun sendReceiptEmail() {
+
+        val payment = currentPayment
+        if (payment == null) {
+            Snackbar.make(binding.root, "Payment not loaded yet", Snackbar.LENGTH_SHORT).show()
+            return
+        }
+
+        if (payment.email.isNullOrBlank()) {
+            Snackbar.make(
+                binding.root,
+                "This client has no email address on file",
+                Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        binding.progressDetails.visibility = View.VISIBLE
+
+        ApiClient.apiService.sendReceiptEmail(InvoiceIdRequest(paymentId))
+            .enqueue(object : Callback<SimpleResponse> {
+
+                override fun onResponse(
+                    call: Call<SimpleResponse>,
+                    response: Response<SimpleResponse>
+                ) {
+
+                    binding.progressDetails.visibility = View.GONE
+
+                    val body = response.body()
+
+                    if (response.isSuccessful && body?.status == "success") {
+                        showNotification(
+                            body.message ?: "Receipt emailed successfully",
+                            isSuccess = true
+                        )
+                    } else {
+                        showNotification(
+                            body?.message ?: "Failed to send receipt email",
+                            isSuccess = false
+                        )
+                    }
+                }
+
+                override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
+                    binding.progressDetails.visibility = View.GONE
+                    showNotification(
+                        t.message ?: "Something went wrong. Please try again",
+                        isSuccess = false
+                    )
+                }
+            })
+    }
+
+    private fun showNotification(message: String, isSuccess: Boolean) {
+
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        val snackbarView = snackbar.view
+
+        val colorRes = if (isSuccess) R.color.accent_green else R.color.accent_red
+
+        snackbarView.setBackgroundColor(
+            ContextCompat.getColor(this, colorRes)
+        )
+
+        val textView = snackbarView.findViewById<android.widget.TextView>(
+            com.google.android.material.R.id.snackbar_text
+        )
+        textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+        textView.gravity = android.view.Gravity.CENTER
+
+        snackbar.show()
     }
 
     private fun confirmDelete() {

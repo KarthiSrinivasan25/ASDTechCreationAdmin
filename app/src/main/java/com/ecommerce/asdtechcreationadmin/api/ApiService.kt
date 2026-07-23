@@ -248,4 +248,20 @@ interface ApiService {
         @Field("notes") notes: String
     ): Call<SimpleResponse>
 
+
+    @Streaming
+    @GET("payments/generate_receipt_pdf.php")
+    fun downloadReceiptPdf(
+        @Query("id") id: Int
+    ): Call<okhttp3.ResponseBody>
+
+
+    // Path taken directly from the docblock in send_receipt_email.php:
+    // "Endpoint: POST api/payments/send_receipt_email.php"
+
+    @POST("payments/send_receipt_email.php")
+    fun sendReceiptEmail(
+        @Body request: InvoiceIdRequest
+    ): Call<SimpleResponse>
+
 }
