@@ -50,6 +50,14 @@ class PaymentActivity : AppCompatActivity() {
         }
     }
 
+    private val detailsLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            loadPayments()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -64,7 +72,12 @@ class PaymentActivity : AppCompatActivity() {
         )
 
         binding.rvPayments.layoutManager = LinearLayoutManager(this)
-        adapter = PaymentAdapter(emptyList())
+        adapter = PaymentAdapter(emptyList()) { payment ->
+            detailsLauncher.launch(
+                Intent(this, PaymentDetailsActivity::class.java)
+                    .putExtra(PaymentDetailsActivity.EXTRA_PAYMENT_ID, payment.id)
+            )
+        }
         binding.rvPayments.adapter = adapter
 
         binding.btnBack.setOnClickListener { finish() }

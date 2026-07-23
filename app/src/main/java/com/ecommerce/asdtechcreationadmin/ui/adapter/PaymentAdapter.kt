@@ -11,7 +11,8 @@ import java.text.NumberFormat
 import java.util.Locale
 
 class PaymentAdapter(
-    private var payments: List<Payment>
+    private var payments: List<Payment>,
+    private val onClick: (Payment) -> Unit
 ) : RecyclerView.Adapter<PaymentAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemPaymentBinding) :
@@ -75,6 +76,8 @@ class PaymentAdapter(
                 )
             }
         }
+
+        holder.binding.root.setOnClickListener { onClick(payment) }
     }
 
     fun submitList(newList: List<Payment>) {

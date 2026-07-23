@@ -37,6 +37,8 @@
         <activity android:name=".ui.invoice.EditInvoiceActivity"/>
         <activity android:name=".ui.payment.PaymentActivity"/>
         <activity android:name=".ui.payment.AddPaymentActivity"/>
+        <activity android:name=".ui.payment.PaymentDetailsActivity"/>
+        <activity android:name=".ui.payment.EditPaymentActivity"/>
         <activity android:name=".ui.profile.ProfileActivity"/>
         <activity android:name=".ui.signature.SignatureActivity"/>
 

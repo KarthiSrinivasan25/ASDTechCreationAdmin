@@ -222,4 +222,30 @@ interface ApiService {
         @Query("client_id") clientId: Int
     ): Call<ClientInvoiceOptionsResponse>
 
+
+    @GET("payments/get_payment.php")
+    fun getPayment(
+        @Query("id") id: Int
+    ): Call<GetPaymentResponse>
+
+
+    @GET("payments/delete_payment.php")
+    fun deletePayment(
+        @Query("id") id: Int
+    ): Call<SimpleResponse>
+
+
+    @FormUrlEncoded
+    @POST("payments/update_payment.php")
+    fun updatePayment(
+        @Field("id") id: Int,
+        @Field("client_id") clientId: Int,
+        @Field("invoice_id") invoiceId: Int,
+        @Field("payment_date") paymentDate: String,
+        @Field("amount_paid") amountPaid: String,
+        @Field("payment_method") paymentMethod: String,
+        @Field("transaction_id") transactionId: String,
+        @Field("notes") notes: String
+    ): Call<SimpleResponse>
+
 }
