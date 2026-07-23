@@ -95,37 +95,43 @@
 
             </LinearLayout>
 
-            <!-- Invoice ID -->
+            <!-- Invoice -->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:text="Invoice ID *"
+                android:text="Invoice *"
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/rowInvoice"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="8dp"
-                android:addStatesFromChildren="true"
                 android:background="@drawable/bg_edittext"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
 
-                <EditText
-                    android:id="@+id/etInvoiceId"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:hint="Enter invoice ID"
-                    android:inputType="number"
-                    android:textColor="@color/text_primary"
-                    android:textColorHint="@color/text_muted"
+                <TextView
+                    android:id="@+id/txtSelectedInvoice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Select client first"
+                    android:textColor="@color/text_muted"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Change"
+                    android:textColor="@color/accent_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -133,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Tip: open the invoice from the Invoice screen to find its ID"
+                android:text="Only invoices with a pending balance are shown"
                 android:textColor="@color/text_muted"
                 android:textSize="11sp" />
 

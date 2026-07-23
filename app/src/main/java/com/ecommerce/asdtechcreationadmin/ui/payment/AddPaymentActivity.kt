@@ -13,6 +13,7 @@ import com.ecommerce.asdtechcreationadmin.api.ApiClient
 import com.ecommerce.asdtechcreationadmin.data.model.SavePaymentResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityAddPaymentBinding
 import com.ecommerce.asdtechcreationadmin.ui.common.ClientPickerDialog
+import com.ecommerce.asdtechcreationadmin.ui.common.InvoicePickerDialog
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +27,7 @@ class AddPaymentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPaymentBinding
 
     private var selectedClientId: Int? = null
+    private var selectedInvoiceId: Int? = null
     private var selectedMethod: String = "Cash"
     private var selectedDate: String = ""
 
@@ -52,6 +54,29 @@ class AddPaymentActivity : AppCompatActivity() {
                 selectedClientId = client.id
                 binding.txtSelectedClient.text = client.client_name
                 binding.txtSelectedClient.setTextColor(
+                    ContextCompat.getColor(this, R.color.text_primary)
+                )
+
+                // Picking a different client invalidates any previously chosen invoice.
+                selectedInvoiceId = null
+                binding.txtSelectedInvoice.text = "Select invoice"
+                binding.txtSelectedInvoice.setTextColor(
+                    ContextCompat.getColor(this, R.color.text_primary)
+                )
+            }
+        }
+
+        binding.rowInvoice.setOnClickListener {
+            val clientId = selectedClientId
+            if (clientId == null) {
+                Snackbar.make(binding.root, "Please select a client first", Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            InvoicePickerDialog.show(this, binding.root, clientId) { invoice ->
+                selectedInvoiceId = invoice.id
+                binding.txtSelectedInvoice.text = "${invoice.invoice_number} — Balance ₹${invoice.balance_amount.toInt()}"
+                binding.txtSelectedInvoice.setTextColor(
                     ContextCompat.getColor(this, R.color.text_primary)
                 )
             }
@@ -111,10 +136,9 @@ class AddPaymentActivity : AppCompatActivity() {
             return
         }
 
-        val invoiceIdText = binding.etInvoiceId.text.toString().trim()
-        val invoiceId = invoiceIdText.toIntOrNull()
-        if (invoiceId == null || invoiceId <= 0) {
-            binding.etInvoiceId.error = "Enter a valid invoice ID"
+        val invoiceId = selectedInvoiceId
+        if (invoiceId == null) {
+            Snackbar.make(binding.root, "Please select an invoice", Snackbar.LENGTH_LONG).show()
             return
         }
 
@@ -191,8 +215,8 @@ class AddPaymentActivity : AppCompatActivity() {
         binding.progressSavePayment.visibility = if (loading) View.VISIBLE else View.GONE
 
         binding.rowClient.isEnabled = !loading
+        binding.rowInvoice.isEnabled = !loading
         binding.rowPaymentDate.isEnabled = !loading
-        binding.etInvoiceId.isEnabled = !loading
         binding.etAmountPaid.isEnabled = !loading
         binding.etTransactionId.isEnabled = !loading
         binding.etNotes.isEnabled = !loading

@@ -13,6 +13,7 @@ import com.ecommerce.asdtechcreationadmin.R
 import com.ecommerce.asdtechcreationadmin.api.ApiClient
 import com.ecommerce.asdtechcreationadmin.data.model.GetInvoiceResponse
 import com.ecommerce.asdtechcreationadmin.data.model.InvoiceDetail
+import com.ecommerce.asdtechcreationadmin.data.model.InvoiceIdRequest
 import com.ecommerce.asdtechcreationadmin.data.model.InvoiceItemDetail
 import com.ecommerce.asdtechcreationadmin.data.model.SimpleResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityInvoiceDetailsBinding
@@ -85,12 +86,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
         }
 
         binding.btnEmailPdf.setOnClickListener {
-            val invoice = currentInvoice ?: return@setOnClickListener
-            PdfHelper.emailToClient(
-                this, invoiceId, invoice.invoice_number, invoice.email, binding.root
-            ) { loading ->
-                binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
-            }
+            sendInvoiceEmail()
         }
 
         loadInvoice()
@@ -213,6 +209,80 @@ class InvoiceDetailsActivity : AppCompatActivity() {
     private fun trimNumber(value: Double): String {
         return if (value == value.toLong().toDouble()) value.toLong().toString()
         else value.toString()
+    }
+
+    private fun sendInvoiceEmail() {
+
+        val invoice = currentInvoice
+        if (invoice == null) {
+            Snackbar.make(binding.root, "Invoice not loaded yet", Snackbar.LENGTH_SHORT).show()
+            return
+        }
+
+        if (invoice.email.isNullOrBlank()) {
+            Snackbar.make(
+                binding.root,
+                "This client has no email address on file",
+                Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        binding.progressDetails.visibility = View.VISIBLE
+
+        ApiClient.apiService.sendInvoiceEmail(InvoiceIdRequest(invoiceId))
+            .enqueue(object : Callback<SimpleResponse> {
+
+                override fun onResponse(
+                    call: Call<SimpleResponse>,
+                    response: Response<SimpleResponse>
+                ) {
+
+                    binding.progressDetails.visibility = View.GONE
+
+                    val body = response.body()
+
+                    if (response.isSuccessful && body?.status == "success") {
+                        showNotification(
+                            body.message ?: "Invoice emailed successfully",
+                            isSuccess = true
+                        )
+                    } else {
+                        showNotification(
+                            body?.message ?: "Failed to send invoice email",
+                            isSuccess = false
+                        )
+                    }
+                }
+
+                override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
+                    binding.progressDetails.visibility = View.GONE
+                    showNotification(
+                        t.message ?: "Something went wrong. Please try again",
+                        isSuccess = false
+                    )
+                }
+            })
+    }
+
+    private fun showNotification(message: String, isSuccess: Boolean) {
+
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        val snackbarView = snackbar.view
+
+        val colorRes = if (isSuccess) R.color.accent_green else R.color.accent_red
+
+        snackbarView.setBackgroundColor(
+            ContextCompat.getColor(this, colorRes)
+        )
+
+        val textView = snackbarView.findViewById<android.widget.TextView>(
+            com.google.android.material.R.id.snackbar_text
+        )
+        textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+        textView.gravity = android.view.Gravity.CENTER
+
+        snackbar.show()
     }
 
     private fun confirmDelete() {
