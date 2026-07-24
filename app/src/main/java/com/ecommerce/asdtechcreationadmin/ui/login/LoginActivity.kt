@@ -21,6 +21,7 @@ import com.ecommerce.asdtechcreationadmin.data.model.LoginRequest
 import com.ecommerce.asdtechcreationadmin.data.model.LoginResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityLoginBinding
 import com.ecommerce.asdtechcreationadmin.session.SessionManager
+import com.ecommerce.asdtechcreationadmin.ui.common.LoadingDialog
 import com.ecommerce.asdtechcreationadmin.ui.dashboard.DashboardActivity
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -34,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     private var isVisible = false
+    private lateinit var loadingDialog: LoadingDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,8 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        loadingDialog = LoadingDialog(this)
 
 
 
@@ -510,6 +514,13 @@ class LoginActivity : AppCompatActivity() {
                 View.VISIBLE
             else
                 View.GONE
+
+
+        if (loading) {
+            loadingDialog.show("Signing in…", "Verifying your credentials")
+        } else {
+            loadingDialog.dismiss()
+        }
 
 
     }

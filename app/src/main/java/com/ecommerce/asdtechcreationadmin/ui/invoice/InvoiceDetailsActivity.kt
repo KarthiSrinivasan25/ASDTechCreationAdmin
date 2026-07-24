@@ -18,6 +18,7 @@ import com.ecommerce.asdtechcreationadmin.data.model.InvoiceItemDetail
 import com.ecommerce.asdtechcreationadmin.data.model.SimpleResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityInvoiceDetailsBinding
 import com.ecommerce.asdtechcreationadmin.databinding.ItemInvoiceDetailLineBinding
+import com.ecommerce.asdtechcreationadmin.ui.common.LoadingDialog
 import com.ecommerce.asdtechcreationadmin.ui.common.PdfHelper
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -35,6 +36,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityInvoiceDetailsBinding
     private var invoiceId: Int = -1
     private var currentInvoice: InvoiceDetail? = null
+    private lateinit var loadingDialog: LoadingDialog
 
     private val moneyFormat = NumberFormat.getNumberInstance(Locale("en", "IN"))
 
@@ -51,6 +53,8 @@ class InvoiceDetailsActivity : AppCompatActivity() {
 
         binding = ActivityInvoiceDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadingDialog = LoadingDialog(this)
 
         invoiceId = intent.getIntExtra(EXTRA_INVOICE_ID, -1)
 
@@ -74,14 +78,16 @@ class InvoiceDetailsActivity : AppCompatActivity() {
         binding.btnViewPdf.setOnClickListener {
             val invoice = currentInvoice ?: return@setOnClickListener
             PdfHelper.viewInvoice(this, invoiceId, invoice.invoice_number, binding.root) { loading ->
-                binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
+                if (loading) loadingDialog.show("Generating PDF…", "Opening invoice ${invoice.invoice_number}")
+                else loadingDialog.dismiss()
             }
         }
 
         binding.btnDownloadPdf.setOnClickListener {
             val invoice = currentInvoice ?: return@setOnClickListener
             PdfHelper.downloadInvoiceToDevice(this, invoiceId, invoice.invoice_number, binding.root) { loading ->
-                binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
+                if (loading) loadingDialog.show("Downloading PDF…", "Saving to your Downloads folder")
+                else loadingDialog.dismiss()
             }
         }
 
@@ -228,7 +234,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
             return
         }
 
-        binding.progressDetails.visibility = View.VISIBLE
+        loadingDialog.show("Sending email…", "Emailing invoice to ${invoice.email}")
 
         ApiClient.apiService.sendInvoiceEmail(InvoiceIdRequest(invoiceId))
             .enqueue(object : Callback<SimpleResponse> {
@@ -238,7 +244,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
                     response: Response<SimpleResponse>
                 ) {
 
-                    binding.progressDetails.visibility = View.GONE
+                    loadingDialog.dismiss()
 
                     val body = response.body()
 
@@ -256,7 +262,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
-                    binding.progressDetails.visibility = View.GONE
+                    loadingDialog.dismiss()
                     showNotification(
                         t.message ?: "Something went wrong. Please try again",
                         isSuccess = false
@@ -297,7 +303,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
 
     private fun deleteInvoice() {
 
-        binding.progressDetails.visibility = View.VISIBLE
+        loadingDialog.show("Deleting invoice…", "This will only take a moment")
 
         ApiClient.apiService.deleteInvoice(invoiceId).enqueue(object : Callback<SimpleResponse> {
 
@@ -306,7 +312,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
                 response: Response<SimpleResponse>
             ) {
 
-                binding.progressDetails.visibility = View.GONE
+                loadingDialog.dismiss()
 
                 val body = response.body()
 
@@ -323,7 +329,7 @@ class InvoiceDetailsActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
-                binding.progressDetails.visibility = View.GONE
+                loadingDialog.dismiss()
                 Snackbar.make(
                     binding.root,
                     t.message ?: "Something went wrong",

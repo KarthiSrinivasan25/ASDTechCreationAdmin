@@ -131,16 +131,16 @@ interface ApiService {
     // NOTE: assumed to live under an "invoices/" subfolder, matching the
     // per-feature subfolder convention used elsewhere (payments/, settings/).
 
-    @GET("invoice/get_invoices.php")
+    @GET("invoices/get_invoices.php")
     fun getInvoices(): Call<InvoicesResponse>
 
 
-    @GET("invoice/get_invoice_next.php")
+    @GET("invoices/get_invoice_next.php")
     fun getNextInvoiceNumber(): Call<NextInvoiceNumberResponse>
 
 
     @FormUrlEncoded
-    @POST("invoice/save_invoice.php")
+    @POST("invoices/save_invoice.php")
     fun saveInvoice(
         @Field("client_id") clientId: Int,
         @Field("invoice_date") invoiceDate: String,
@@ -163,20 +163,20 @@ interface ApiService {
     ): Call<SaveInvoiceResponse>
 
 
-    @GET("invoice/get_invoice.php")
+    @GET("invoices/get_invoice.php")
     fun getInvoice(
         @Query("id") id: Int
     ): Call<GetInvoiceResponse>
 
 
-    @GET("invoice/delete_invoice.php")
+    @GET("invoices/delete_invoice.php")
     fun deleteInvoice(
         @Query("id") id: Int
     ): Call<SimpleResponse>
 
 
     @FormUrlEncoded
-    @POST("invoice/update_invoice.php")
+    @POST("invoices/update_invoice.php")
     fun updateInvoice(
         @Field("invoice_id") invoiceId: Int,
         @Field("client_id") clientId: Int,
@@ -202,7 +202,7 @@ interface ApiService {
 
 
     @Streaming
-    @GET("invoice/generate_invoice_pdf.php")
+    @GET("invoices/generate_invoice_pdf.php")
     fun downloadInvoicePdf(
         @Query("id") id: Int
     ): Call<okhttp3.ResponseBody>
@@ -217,7 +217,7 @@ interface ApiService {
     ): Call<SimpleResponse>
 
 
-    @GET("payments/get_client_invoices.php")
+    @GET("payments/get_client_invoice.php")
     fun getClientInvoices(
         @Query("client_id") clientId: Int
     ): Call<ClientInvoiceOptionsResponse>

@@ -15,6 +15,7 @@ import com.ecommerce.asdtechcreationadmin.data.model.InvoiceIdRequest
 import com.ecommerce.asdtechcreationadmin.data.model.PaymentDetail
 import com.ecommerce.asdtechcreationadmin.data.model.SimpleResponse
 import com.ecommerce.asdtechcreationadmin.databinding.ActivityPaymentDetailsBinding
+import com.ecommerce.asdtechcreationadmin.ui.common.LoadingDialog
 import com.ecommerce.asdtechcreationadmin.ui.common.PdfHelper
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -32,6 +33,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPaymentDetailsBinding
     private var paymentId: Int = -1
     private var currentPayment: PaymentDetail? = null
+    private lateinit var loadingDialog: LoadingDialog
 
     private val moneyFormat = NumberFormat.getNumberInstance(Locale("en", "IN"))
 
@@ -48,6 +50,8 @@ class PaymentDetailsActivity : AppCompatActivity() {
 
         binding = ActivityPaymentDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadingDialog = LoadingDialog(this)
 
         paymentId = intent.getIntExtra(EXTRA_PAYMENT_ID, -1)
 
@@ -71,14 +75,16 @@ class PaymentDetailsActivity : AppCompatActivity() {
         binding.btnViewPdf.setOnClickListener {
             val payment = currentPayment ?: return@setOnClickListener
             PdfHelper.viewReceipt(this, paymentId, payment.receipt_number, binding.root) { loading ->
-                binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
+                if (loading) loadingDialog.show("Generating receipt…", "Opening ${payment.receipt_number}")
+                else loadingDialog.dismiss()
             }
         }
 
         binding.btnDownloadPdf.setOnClickListener {
             val payment = currentPayment ?: return@setOnClickListener
             PdfHelper.downloadReceiptToDevice(this, paymentId, payment.receipt_number, binding.root) { loading ->
-                binding.progressDetails.visibility = if (loading) View.VISIBLE else View.GONE
+                if (loading) loadingDialog.show("Downloading receipt…", "Saving to your Downloads folder")
+                else loadingDialog.dismiss()
             }
         }
 
@@ -202,7 +208,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
             return
         }
 
-        binding.progressDetails.visibility = View.VISIBLE
+        loadingDialog.show("Sending email…", "Emailing receipt to ${payment.email}")
 
         ApiClient.apiService.sendReceiptEmail(InvoiceIdRequest(paymentId))
             .enqueue(object : Callback<SimpleResponse> {
@@ -212,7 +218,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
                     response: Response<SimpleResponse>
                 ) {
 
-                    binding.progressDetails.visibility = View.GONE
+                    loadingDialog.dismiss()
 
                     val body = response.body()
 
@@ -230,7 +236,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
-                    binding.progressDetails.visibility = View.GONE
+                    loadingDialog.dismiss()
                     showNotification(
                         t.message ?: "Something went wrong. Please try again",
                         isSuccess = false
@@ -271,7 +277,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
 
     private fun deletePayment() {
 
-        binding.progressDetails.visibility = View.VISIBLE
+        loadingDialog.show("Deleting payment…", "This will only take a moment")
 
         ApiClient.apiService.deletePayment(paymentId).enqueue(object : Callback<SimpleResponse> {
 
@@ -280,7 +286,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
                 response: Response<SimpleResponse>
             ) {
 
-                binding.progressDetails.visibility = View.GONE
+                loadingDialog.dismiss()
 
                 val body = response.body()
 
@@ -297,7 +303,7 @@ class PaymentDetailsActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SimpleResponse>, t: Throwable) {
-                binding.progressDetails.visibility = View.GONE
+                loadingDialog.dismiss()
                 Snackbar.make(
                     binding.root,
                     t.message ?: "Something went wrong",
